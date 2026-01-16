@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 import fs from "node:fs/promises";
 import path from "node:path";
 
