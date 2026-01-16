@@ -146,11 +146,6 @@
         }
       ]
     },
-    "weekly": {
-      "title": "This Week",
-      "weekOf": "2026-01-12",
-      "entries": []
-    },
     "thisWeek": {
       "title": "This Week",
       "entries": []
