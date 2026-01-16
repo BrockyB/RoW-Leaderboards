@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 import fs from "node:fs/promises";
 import path from "node:path";
 import Controls from "./Controls";
@@ -52,27 +54,26 @@ function fmt(n: number) {
 export default async function Page({
   searchParams,
 }: {
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+  searchParams?: Record<string, string | string[] | undefined>;
 }) {
   // Read static JSON directly from /public
   const filePath = path.join(process.cwd(), "public", "leaderboard.json");
   const raw = await fs.readFile(filePath, "utf8");
   const data = JSON.parse(raw) as Data;
 
-  const sp = (await searchParams) ?? {};
+  const sp = searchParams ?? {};
   const boardKeys = Object.keys(data.boards);
 
-  // Defaults
   const boardKey =
     (typeof sp.board === "string" && boardKeys.includes(sp.board) && sp.board) ||
-    boardKeys[0] ||
+    (boardKeys.includes("overall") ? "overall" : boardKeys[0]) ||
     "overall";
 
   const sortKey = ((): SortKey => {
     const v = typeof sp.sort === "string" ? sp.sort : "personal";
-    if (v === "occ" || v === "gather" || v === "pvp" || v === "life" || v === "personal")
-      return v;
-    return "personal";
+    return v === "occ" || v === "gather" || v === "pvp" || v === "life" || v === "personal"
+      ? v
+      : "personal";
   })();
 
   const pageNum = (() => {
@@ -85,7 +86,7 @@ export default async function Page({
 
   const sorted = [...entries].sort((a, b) => scoreFor(b, sortKey) - scoreFor(a, sortKey));
 
-  // Podium is always top 3 by PERSONAL (feels consistent)
+  // Podium is always top 3 by PERSONAL
   const podiumSorted = [...entries].sort((a, b) => personal(b) - personal(a));
   const top3 = podiumSorted.slice(0, 3);
 
@@ -122,15 +123,13 @@ export default async function Page({
           </div>
         </header>
 
-       <Controls
-  boardKeys={boardKeys}
-  boardTitles={Object.fromEntries(
-    boardKeys.map((k) => [k, data.boards[k]?.title ?? k])
-  )}
-  activeBoard={boardKey}
-  activeSort={sortKey}
-  activePage={safePage}
-/>
+        <Controls
+          boardKeys={boardKeys}
+          boardTitles={Object.fromEntries(boardKeys.map((k) => [k, data.boards[k]?.title ?? k]))}
+          activeBoard={boardKey}
+          activeSort={sortKey}
+          activePage={safePage}
+        />
 
         {/* Top 3 */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -160,8 +159,10 @@ export default async function Page({
         <section className="rounded-2xl bg-zinc-900/40 border border-zinc-800 overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800">
             <div className="text-sm text-zinc-300">
-              Showing <span className="font-semibold">{start + 1}</span>–
-              <span className="font-semibold">{Math.min(start + PAGE_SIZE, sorted.length)}</span>{" "}
+              Showing <span className="font-semibold">{sorted.length ? start + 1 : 0}</span>–
+              <span className="font-semibold">
+                {sorted.length ? Math.min(start + PAGE_SIZE, sorted.length) : 0}
+              </span>{" "}
               of <span className="font-semibold">{sorted.length}</span>
             </div>
 
