@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-01-16T21:32:56.446756Z",
+  "updatedAt": "2026-01-16T22:34:29.994400Z",
   "boards": {
     "overall": {
       "title": "Overall",
@@ -27,121 +27,142 @@
         },
         {
           "name": "Isle lele",
-          "occ": 77724,
+          "occ": 97155,
           "gather": 0,
-          "pvp": 455584,
+          "pvp": 569480,
           "life": 0
         },
         {
           "name": "Upnice)\\ i238",
-          "occ": 78024,
+          "occ": 97530,
           "gather": 0,
-          "pvp": 388180,
+          "pvp": 485225,
           "life": 0
         },
         {
           "name": "Kade",
-          "occ": 77424,
+          "occ": 96780,
           "gather": 0,
-          "pvp": 372068,
+          "pvp": 465085,
           "life": 0
         },
         {
           "name": "SQGEKING",
-          "occ": 77424,
+          "occ": 96780,
           "gather": 0,
-          "pvp": 196816,
+          "pvp": 246020,
           "life": 0
         },
         {
           "name": "3akycka",
-          "occ": 77724,
+          "occ": 97155,
           "gather": 0,
-          "pvp": 191924,
+          "pvp": 239905,
           "life": 0
         },
         {
           "name": "AlanA",
-          "occ": 77424,
+          "occ": 96780,
           "gather": 0,
-          "pvp": 165476,
+          "pvp": 206845,
           "life": 0
         },
         {
           "name": "Tiho",
-          "occ": 77424,
-          "gather": 876,
-          "pvp": 150644,
+          "occ": 96780,
+          "gather": 1095,
+          "pvp": 188305,
           "life": 0
         },
         {
           "name": "LUIZKER",
-          "occ": 77424,
+          "occ": 96780,
           "gather": 0,
-          "pvp": 139932,
+          "pvp": 174915,
           "life": 0
         },
         {
           "name": "Rock Poli",
-          "occ": 77884,
+          "occ": 97355,
           "gather": 0,
-          "pvp": 135148,
+          "pvp": 168935,
           "life": 0
         },
         {
           "name": "¢ xBrockyBx",
-          "occ": 77724,
+          "occ": 97155,
           "gather": 0,
-          "pvp": 130584,
+          "pvp": 163230,
           "life": 0
         },
         {
           "name": "GuNzzy",
-          "occ": 77724,
-          "gather": 1028,
-          "pvp": 126904,
+          "occ": 97155,
+          "gather": 1285,
+          "pvp": 158630,
           "life": 0
         },
         {
           "name": "Ardgenta",
-          "occ": 77724,
+          "occ": 97155,
           "gather": 0,
-          "pvp": 99304,
+          "pvp": 124130,
           "life": 0
         },
         {
           "name": "1°Xzoreqqee",
-          "occ": 77916,
+          "occ": 97395,
           "gather": 0,
-          "pvp": 91592,
+          "pvp": 114490,
           "life": 0
         },
         {
           "name": "Ruler",
-          "occ": 77724,
+          "occ": 97155,
           "gather": 0,
-          "pvp": 70568,
+          "pvp": 88210,
           "life": 0
         },
         {
           "name": "x Inquisitor x",
-          "occ": 70632,
-          "gather": 2592,
-          "pvp": 64584,
+          "occ": 88290,
+          "gather": 3240,
+          "pvp": 80730,
           "life": 0
         },
         {
           "name": "HRDFATTR",
-          "occ": 77424,
+          "occ": 96780,
           "gather": 0,
-          "pvp": 29824,
+          "pvp": 37280,
           "life": 0
         },
         {
           "name": "Empire DarkMen",
-          "occ": 23808,
+          "occ": 29760,
           "gather": 0,
-          "pvp": 59936,
+          "pvp": 74920,
+          "life": 0
+        },
+        {
+          "name": "@ Kiyomi Personal Score: 246,587",
+          "occ": 19431,
+          "gather": 0,
+          "pvp": 227156,
+          "life": 0
+        },
+        {
+          "name": "@ TasteTheeRambo Personal Score: 204,128",
+          "occ": 19356,
+          "gather": 0,
+          "pvp": 184772,
+          "life": 0
+        },
+        {
+          "name": "© Wawaa Personal Score: 154,253",
+          "occ": 19471,
+          "gather": 0,
+          "pvp": 134782,
           "life": 0
         }
       ]
