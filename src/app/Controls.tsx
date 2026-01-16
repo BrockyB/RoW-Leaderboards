@@ -12,13 +12,28 @@ function isArchivedWeekKey(k: string) {
   return k.startsWith("week_"); // week_YYYY-MM-DD
 }
 
-function weekLabelFromKey(k: string) {
-  // week_2026-01-16 -> Week 01-16
-  const d = k.slice("week_".length); // YYYY-MM-DD
-  const mm = d.slice(5, 7);
-  const dd = d.slice(8, 10);
-  if (mm.length === 2 && dd.length === 2) return `Week ${mm}-${dd}`;
-  return k;
+function mmdd(iso: string) {
+  // iso: YYYY-MM-DD
+  const mm = iso.slice(5, 7);
+  const dd = iso.slice(8, 10);
+  if (mm.length === 2 && dd.length === 2) return `${mm}-${dd}`;
+  return iso;
+}
+
+function archivedWeekLabel(key: string, titleFromData?: string) {
+  // Use stored title if present, but strip anything in parentheses just in case
+  const t = (titleFromData ?? "").replace(/\(.*?\)/g, "");
+  const matches = t.match(/\d{4}-\d{2}-\d{2}/g);
+
+  if (matches && matches.length >= 2) {
+    const start = matches[0];
+    const end = matches[1];
+    return `Week ${mmdd(start)} \u2192 ${mmdd(end)}`;
+  }
+
+  // Fallback: use key start only
+  const startIso = key.slice("week_".length);
+  return `Week ${mmdd(startIso)}`;
 }
 
 export default function Controls({
@@ -35,20 +50,17 @@ export default function Controls({
     return `/?board=${encodeURIComponent(b)}&sort=${encodeURIComponent(s)}&page=${p}`;
   };
 
-  // Split boards
   const hasOverall = boardKeys.includes("overall");
   const hasThisWeek = boardKeys.includes("thisWeek");
 
   const archivedWeeks = [...boardKeys]
     .filter(isArchivedWeekKey)
-    // newest -> oldest (lexicographic works for YYYY-MM-DD)
+    // newest -> oldest
     .sort((a, b) => b.localeCompare(a));
 
-  // If user is currently viewing an archived week, show it selected.
-  // Otherwise default dropdown selection to newest archived week (if any),
-  // but do not auto-navigate; it’s just the control’s default.
-  const defaultWeekKey =
-    isArchivedWeekKey(activeBoard) ? activeBoard : archivedWeeks[0] ?? "";
+  const defaultWeekKey = isArchivedWeekKey(activeBoard)
+    ? activeBoard
+    : archivedWeeks[0] ?? "";
 
   return (
     <section className="rounded-2xl bg-zinc-900/40 border border-zinc-800 p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -83,7 +95,6 @@ export default function Controls({
           </a>
         ) : null}
 
-        {/* Archived weeks dropdown */}
         {archivedWeeks.length > 0 ? (
           <div className="flex items-center gap-2">
             <span className="text-sm text-zinc-400">Archive:</span>
@@ -101,7 +112,7 @@ export default function Controls({
             >
               {archivedWeeks.map((k) => (
                 <option key={k} value={k}>
-                  {weekLabelFromKey(k)}
+                  {archivedWeekLabel(k, boardTitles[k])}
                 </option>
               ))}
             </select>
