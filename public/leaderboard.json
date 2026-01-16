@@ -1,0 +1,14 @@
+{
+  "updatedAt": "2026-01-16T00:00:00Z",
+  "boards": {
+    "overall": {
+      "title": "Overall",
+      "entries": [
+        { "name": "Kiyomi", "occ": 19431, "gather": 0, "pvp": 227156, "life": 0 },
+        { "name": "TasteTheeRambo", "occ": 19356, "gather": 0, "pvp": 184772, "life": 0 },
+        { "name": "Wawaa", "occ": 19471, "gather": 0, "pvp": 134782, "life": 0 }
+      ]
+    },
+    "weekly": { "title": "This Week", "weekOf": "2026-01-12", "entries": [] }
+  }
+}
