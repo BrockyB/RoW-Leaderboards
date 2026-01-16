@@ -22,12 +22,32 @@ export default function Controls({
     return `/?board=${encodeURIComponent(b)}&sort=${encodeURIComponent(s)}&page=${p}`;
   };
 
+  const sortedKeys = [...boardKeys].sort((a, b) => {
+    const rank = (k: string) => {
+      if (k === "overall") return 0;
+      if (k === "thisWeek") return 1;
+      if (k.startsWith("week_")) return 2;
+      return 3;
+    };
+
+    const ra = rank(a);
+    const rb = rank(b);
+    if (ra !== rb) return ra - rb;
+
+    // Archived weeks newest -> oldest (keys are week_YYYY-MM-DD)
+    const aIsWeek = a.startsWith("week_");
+    const bIsWeek = b.startsWith("week_");
+    if (aIsWeek && bIsWeek) return b.localeCompare(a);
+
+    return a.localeCompare(b);
+  });
+
   return (
     <section className="rounded-2xl bg-zinc-900/40 border border-zinc-800 p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-sm text-zinc-400">Board:</span>
 
-        {boardKeys.map((k) => {
+        {sortedKeys.map((k) => {
           const active = k === activeBoard;
           return (
             <a
