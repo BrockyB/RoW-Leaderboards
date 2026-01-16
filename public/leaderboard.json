@@ -1,147 +1,147 @@
 {
-  "updatedAt": "2026-01-16T20:59:39.766167Z",
+  "updatedAt": "2026-01-16T21:32:56.446756Z",
   "boards": {
     "overall": {
       "title": "Overall",
       "entries": [
         {
           "name": "Kiyomi",
-          "occ": 77724,
+          "occ": 97155,
           "gather": 0,
-          "pvp": 908624,
+          "pvp": 1135780,
           "life": 0
         },
         {
           "name": "TasteTheeRambo",
-          "occ": 77424,
+          "occ": 96780,
           "gather": 0,
-          "pvp": 739088,
+          "pvp": 923860,
           "life": 0
         },
         {
           "name": "Wawaa",
-          "occ": 77884,
+          "occ": 97355,
           "gather": 0,
-          "pvp": 539128,
+          "pvp": 673910,
           "life": 0
         },
         {
           "name": "Isle lele",
-          "occ": 58293,
+          "occ": 77724,
           "gather": 0,
-          "pvp": 341688,
+          "pvp": 455584,
           "life": 0
         },
         {
           "name": "Upnice)\\ i238",
-          "occ": 58518,
+          "occ": 78024,
           "gather": 0,
-          "pvp": 291135,
+          "pvp": 388180,
           "life": 0
         },
         {
           "name": "Kade",
-          "occ": 58068,
+          "occ": 77424,
           "gather": 0,
-          "pvp": 279051,
+          "pvp": 372068,
           "life": 0
         },
         {
           "name": "SQGEKING",
-          "occ": 58068,
+          "occ": 77424,
           "gather": 0,
-          "pvp": 147612,
+          "pvp": 196816,
           "life": 0
         },
         {
           "name": "3akycka",
-          "occ": 58293,
+          "occ": 77724,
           "gather": 0,
-          "pvp": 143943,
+          "pvp": 191924,
           "life": 0
         },
         {
           "name": "AlanA",
-          "occ": 58068,
+          "occ": 77424,
           "gather": 0,
-          "pvp": 124107,
+          "pvp": 165476,
           "life": 0
         },
         {
           "name": "Tiho",
-          "occ": 58068,
-          "gather": 657,
-          "pvp": 112983,
+          "occ": 77424,
+          "gather": 876,
+          "pvp": 150644,
           "life": 0
         },
         {
           "name": "LUIZKER",
-          "occ": 58068,
+          "occ": 77424,
           "gather": 0,
-          "pvp": 104949,
+          "pvp": 139932,
           "life": 0
         },
         {
           "name": "Rock Poli",
-          "occ": 58413,
+          "occ": 77884,
           "gather": 0,
-          "pvp": 101361,
+          "pvp": 135148,
           "life": 0
         },
         {
           "name": "¢ xBrockyBx",
-          "occ": 58293,
+          "occ": 77724,
           "gather": 0,
-          "pvp": 97938,
+          "pvp": 130584,
           "life": 0
         },
         {
           "name": "GuNzzy",
-          "occ": 58293,
-          "gather": 771,
-          "pvp": 95178,
+          "occ": 77724,
+          "gather": 1028,
+          "pvp": 126904,
           "life": 0
         },
         {
           "name": "Ardgenta",
-          "occ": 58293,
+          "occ": 77724,
           "gather": 0,
-          "pvp": 74478,
+          "pvp": 99304,
           "life": 0
         },
         {
           "name": "1°Xzoreqqee",
-          "occ": 58437,
+          "occ": 77916,
           "gather": 0,
-          "pvp": 68694,
+          "pvp": 91592,
           "life": 0
         },
         {
           "name": "Ruler",
-          "occ": 58293,
+          "occ": 77724,
           "gather": 0,
-          "pvp": 52926,
+          "pvp": 70568,
           "life": 0
         },
         {
           "name": "x Inquisitor x",
-          "occ": 52974,
-          "gather": 1944,
-          "pvp": 48438,
+          "occ": 70632,
+          "gather": 2592,
+          "pvp": 64584,
           "life": 0
         },
         {
           "name": "HRDFATTR",
-          "occ": 58068,
+          "occ": 77424,
           "gather": 0,
-          "pvp": 22368,
+          "pvp": 29824,
           "life": 0
         },
         {
           "name": "Empire DarkMen",
-          "occ": 17856,
+          "occ": 23808,
           "gather": 0,
-          "pvp": 44952,
+          "pvp": 59936,
           "life": 0
         }
       ]
@@ -151,7 +151,7 @@
       "entries": []
     },
     "week_2026-01-16": {
-      "title": "Week of 2026-01-16 → 2026-01-22 (UTC)",
+      "title": "Week of 2026-01-16 → 2026-01-22",
       "entries": [],
       "weekOf": "2026-01-16"
     }
