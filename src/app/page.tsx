@@ -23,7 +23,7 @@ type Data = {
 
 type SortKey = "personal" | "occ" | "gather" | "pvp" | "life";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 25;
 
 function personal(e: Entry) {
   return (e.occ || 0) + (e.gather || 0) + (e.pvp || 0) + (e.life || 0);
