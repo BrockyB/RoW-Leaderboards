@@ -53,23 +53,23 @@ function fmt(n: number) {
 
 /**
  * Website-side name cleanup.
- * Fixes OCR/name pollution like:
+ * Removes OCR junk like:
  *  - "@ Kiyomi Personal Score: 246,587"
  *  - "Kiyomi — Personal 246,587"
  */
 function cleanName(raw: string): string {
   let s = (raw ?? "").trim();
 
-  // remove leading @ and other common prefix noise
+  // remove leading @
   s = s.replace(/^[@\s]+/, "");
 
-  // remove "Personal Score: 123,456" (case-insensitive)
+  // remove "Personal Score: 123,456"
   s = s.replace(/\bpersonal\s*score\s*:\s*[\d,]+/gi, "").trim();
 
   // remove "Personal: 123,456"
   s = s.replace(/\bpersonal\s*:\s*[\d,]+/gi, "").trim();
 
-  // remove trailing separators left behind (— | - :)
+  // remove trailing separators
   s = s.replace(/[\s\-—|:]+$/g, "").trim();
 
   return s;
@@ -77,21 +77,20 @@ function cleanName(raw: string): string {
 
 /**
  * Merge duplicate players after cleaning the name.
- * Key = casefold-ish (lowercase) of cleaned name.
+ * Key = cleaned name lowercased.
  * Sums stats so duplicates collapse into one row.
  */
 function dedupeEntries(entries: Entry[]): Entry[] {
-  const mapմամբ: Record<string, Entry> = {};
+  const merged: Record<string, Entry> = {};
 
   for (const e of entries) {
-    const display = cleanName(e.name);
+    const display = cleanName(e?.name ?? "");
+    if (!display) continue;
+
     const key = display.toLocaleLowerCase();
 
-    if (!key) continue;
-
-    if (!map
-      [key]) {
-      map[key] = {
+    if (!merged[key]) {
+      merged[key] = {
         name: display,
         occ: e.occ || 0,
         gather: e.gather || 0,
@@ -99,14 +98,19 @@ function dedupeEntries(entries: Entry[]): Entry[] {
         life: e.life || 0,
       };
     } else {
-      map[key].occ += e.occ || 0;
-      map[key].gather += e.gather || 0;
-      map[key].pvp += e.pvp || 0;
-      map[key].life += e.life || 0;
+      merged[key].occ += e.occ || 0;
+      merged[key].gather += e.gather || 0;
+      merged[key].pvp += e.pvp || 0;
+      merged[key].life += e.life || 0;
+
+      // keep “nicer” display name (usually longer / more complete)
+      if (display.length > merged[key].name.length) {
+        merged[key].name = display;
+      }
     }
   }
 
-  return Object.values(map);
+  return Object.values(merged);
 }
 
 export default async function Page({
@@ -122,9 +126,10 @@ export default async function Page({
   const sp = (await searchParams) ?? {};
   const boardKeys = Object.keys(data.boards);
 
+  // Defaults
   const boardKey =
     (typeof sp.board === "string" && boardKeys.includes(sp.board) && sp.board) ||
-    boardKeys[0] ||
+    (boardKeys.includes("overall") ? "overall" : boardKeys[0]) ||
     "overall";
 
   const sortKey = ((): SortKey => {
@@ -141,44 +146,28 @@ export default async function Page({
 
   const q = typeof sp.q === "string" ? sp.q.trim() : "";
 
-  const board = data.boards[boardKey] ?? data.boards[boardKeys[0]];
+  const board = data.boards[boardKey] ?? data.boards["overall"] ?? data.boards[boardKeys[0]];
   const rawEntries = board?.entries ?? [];
 
   // ✅ Normalize + merge duplicates BEFORE filtering/sorting
   const mergedEntries = dedupeEntries(rawEntries);
 
-  // Search filters the paged list only (as we discussed)
+  // Search filters the paged list only
   const filtered = q
     ? mergedEntries.filter((e) => e.name.toLocaleLowerCase().includes(q.toLocaleLowerCase()))
     : mergedEntries;
 
   const sorted = [...filtered].sort((a, b) => scoreFor(b, sortKey) - scoreFor(a, sortKey));
 
-  // Podium is always top 3 by PERSONAL (from full mergedEntries, not filtered)
+  // Podium always top 3 by PERSONAL (from full mergedEntries)
   const podiumSorted = [...mergedEntries].sort((a, b) => personal(b) - personal(a));
   const top3 = podiumSorted.slice(0, 3);
 
+  // Paging
   const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
   const safePage = Math.min(pageNum, totalPages);
   const start = (safePage - 1) * PAGE_SIZE;
   const pageItems = sorted.slice(start, start + PAGE_SIZE);
-
-  const makeHref = (
-    next: Partial<{ board: string; sort: string; page: number; q: string }>
-  ) => {
-    const b = next.board ?? boardKey;
-    const s = next.sort ?? sortKey;
-    const p = next.page ?? safePage;
-    const nq = next.q ?? q;
-
-    const params = new URLSearchParams();
-    params.set("board", b);
-    params.set("sort", s);
-    params.set("page", String(p));
-    if (nq) params.set("q", nq);
-
-    return `/?${params.toString()}`;
-  };
 
   return (
     <main className="min-h-screen bg-zinc-950 text-zinc-100 p-6">
@@ -188,7 +177,7 @@ export default async function Page({
             <div className="text-sm text-zinc-400">Updated: {data.updatedAt}</div>
             <h1 className="text-3xl font-semibold">🏛️ {board.title} Leaderboard</h1>
             {board.weekOf ? (
-              <div className="text-sm text-zinc-400">Week of: {board.weekOf}</div>
+              <div className="text-sm text-zinc-400">Week: {board.weekOf}</div>
             ) : null}
           </div>
 
@@ -239,7 +228,7 @@ export default async function Page({
             <div className="text-sm text-zinc-300">
               {q ? (
                 <>
-                  Filtered by: <span className="font-semibold">{q}</span> —{" "}
+                  Filter: <span className="font-semibold">{q}</span> —{" "}
                 </>
               ) : null}
               Showing <span className="font-semibold">{sorted.length ? start + 1 : 0}</span>–
@@ -251,7 +240,9 @@ export default async function Page({
 
             <div className="flex items-center gap-2 text-sm">
               <a
-                href={makeHref({ page: Math.max(1, safePage - 1) })}
+                href={`/?board=${encodeURIComponent(boardKey)}&sort=${encodeURIComponent(
+                  sortKey
+                )}&page=${Math.max(1, safePage - 1)}${q ? `&q=${encodeURIComponent(q)}` : ""}`}
                 className={[
                   "px-3 py-1 rounded-xl border",
                   safePage === 1
@@ -267,7 +258,9 @@ export default async function Page({
               </span>
 
               <a
-                href={makeHref({ page: Math.min(totalPages, safePage + 1) })}
+                href={`/?board=${encodeURIComponent(boardKey)}&sort=${encodeURIComponent(
+                  sortKey
+                )}&page=${Math.min(totalPages, safePage + 1)}${q ? `&q=${encodeURIComponent(q)}` : ""}`}
                 className={[
                   "px-3 py-1 rounded-xl border",
                   safePage === totalPages
@@ -280,45 +273,20 @@ export default async function Page({
             </div>
           </div>
 
-          {/* Header row */}
+          {/* Header */}
           <div className="grid grid-cols-12 gap-2 px-4 py-3 text-xs uppercase tracking-wide text-zinc-400 border-b border-zinc-800">
             <div className="col-span-1">#</div>
             <div className="col-span-3">Player</div>
-
-            <div
-              className={[
-                "col-span-2 text-right",
-                sortKey === "personal" ? "text-zinc-200" : "",
-              ].join(" ")}
-            >
-              Personal
-            </div>
-            <div className={["col-span-2 text-right", sortKey === "occ" ? "text-zinc-200" : ""].join(" ")}>
-              🏰 Occ
-            </div>
-            <div
-              className={[
-                "col-span-2 text-right",
-                sortKey === "gather" ? "text-zinc-200" : "",
-              ].join(" ")}
-            >
-              ⛏️ Gather
-            </div>
-            <div className={["col-span-1 text-right", sortKey === "pvp" ? "text-zinc-200" : ""].join(" ")}>
-              ⚔️
-            </div>
-            <div className={["col-span-1 text-right", sortKey === "life" ? "text-zinc-200" : ""].join(" ")}>
-              🌀
-            </div>
+            <div className="col-span-2 text-right">Personal</div>
+            <div className="col-span-2 text-right">🏰 Occ</div>
+            <div className="col-span-2 text-right">⛏️ Gather</div>
+            <div className="col-span-1 text-right">⚔️</div>
+            <div className="col-span-1 text-right">🌀</div>
           </div>
 
           {pageItems.map((e, idx) => {
             const rank = start + idx + 1;
             const zebra = idx % 2 === 0 ? "bg-zinc-950/10" : "bg-zinc-950/20";
-
-            const highlight = (k: SortKey) =>
-              sortKey === k ? "bg-zinc-100/10 rounded-lg px-2 py-1" : "px-2 py-1";
-
             return (
               <div
                 key={`${rank}-${e.name}`}
@@ -326,22 +294,11 @@ export default async function Page({
               >
                 <div className="col-span-1 text-zinc-400">{rank}</div>
                 <div className="col-span-3 truncate">{e.name}</div>
-
-                <div className={`col-span-2 text-right font-semibold ${highlight("personal")}`}>
-                  {fmt(personal(e))}
-                </div>
-                <div className={`col-span-2 text-right text-zinc-200 ${highlight("occ")}`}>
-                  {fmt(e.occ)}
-                </div>
-                <div className={`col-span-2 text-right text-zinc-200 ${highlight("gather")}`}>
-                  {fmt(e.gather)}
-                </div>
-                <div className={`col-span-1 text-right text-zinc-200 ${highlight("pvp")}`}>
-                  {fmt(e.pvp)}
-                </div>
-                <div className={`col-span-1 text-right text-zinc-200 ${highlight("life")}`}>
-                  {fmt(e.life)}
-                </div>
+                <div className="col-span-2 text-right font-semibold">{fmt(personal(e))}</div>
+                <div className="col-span-2 text-right">{fmt(e.occ)}</div>
+                <div className="col-span-2 text-right">{fmt(e.gather)}</div>
+                <div className="col-span-1 text-right">{fmt(e.pvp)}</div>
+                <div className="col-span-1 text-right">{fmt(e.life)}</div>
               </div>
             );
           })}
@@ -350,4 +307,3 @@ export default async function Page({
     </main>
   );
 }
-
