@@ -52,10 +52,22 @@ function fmt(n: number) {
 }
 
 /**
+ * Manual aliases for known OCR misreads.
+ * Key MUST be the cleaned name lowercased (after cleanName cleanup).
+ */
+const NAME_ALIASES: Record<string, string> = {
+  "sqgeking": "SØGEKING",
+  "upnice) i238": "Up n1ce小皮鞭",
+  // Add more as needed, examples:
+  // "1°xzoreqqee": "TO✗zoreqqee",
+};
+
+/**
  * Website-side name cleanup.
  * Removes OCR junk like:
  *  - "@ Kiyomi Personal Score: 246,587"
  *  - "Kiyomi — Personal 246,587"
+ * Then applies NAME_ALIASES.
  */
 function cleanName(raw: string): string {
   let s = (raw ?? "").trim();
@@ -71,6 +83,10 @@ function cleanName(raw: string): string {
 
   // remove trailing separators
   s = s.replace(/[\s\-—|:]+$/g, "").trim();
+
+  // apply alias map after cleanup
+  const key = s.toLocaleLowerCase();
+  if (NAME_ALIASES[key]) return NAME_ALIASES[key];
 
   return s;
 }
@@ -176,9 +192,7 @@ export default async function Page({
           <div>
             <div className="text-sm text-zinc-400">Updated: {data.updatedAt}</div>
             <h1 className="text-3xl font-semibold">🏛️ {board.title} Leaderboard</h1>
-            {board.weekOf ? (
-              <div className="text-sm text-zinc-400">Week: {board.weekOf}</div>
-            ) : null}
+            {board.weekOf ? <div className="text-sm text-zinc-400">Week: {board.weekOf}</div> : null}
           </div>
 
           <div className="text-sm text-zinc-300 flex flex-wrap gap-x-3 gap-y-1">
