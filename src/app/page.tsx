@@ -52,19 +52,20 @@ function fmt(n: number) {
 }
 
 function norm(s: string) {
-  return (s || "").toLowerCase();
+  return (s ?? "").trim().toLowerCase();
 }
 
 export default async function Page({
   searchParams,
 }: {
-  searchParams?: Record<string, string | string[] | undefined>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  // Read static JSON directly from /public
   const filePath = path.join(process.cwd(), "public", "leaderboard.json");
   const raw = await fs.readFile(filePath, "utf8");
   const data = JSON.parse(raw) as Data;
 
-  const sp = searchParams ?? {};
+  const sp = (await searchParams) ?? {};
   const boardKeys = Object.keys(data.boards);
 
   const boardKey =
@@ -74,33 +75,33 @@ export default async function Page({
 
   const sortKey = ((): SortKey => {
     const v = typeof sp.sort === "string" ? sp.sort : "personal";
-    return v === "occ" || v === "gather" || v === "pvp" || v === "life" || v === "personal"
-      ? v
-      : "personal";
+    if (v === "occ" || v === "gather" || v === "pvp" || v === "life" || v === "personal") return v;
+    return "personal";
   })();
-
-  const q = typeof sp.q === "string" ? sp.q : "";
-  const qNorm = norm(q.trim());
 
   const pageNum = (() => {
     const v = typeof sp.page === "string" ? parseInt(sp.page, 10) : 1;
     return Number.isFinite(v) && v > 0 ? v : 1;
   })();
 
+  const q = (typeof sp.q === "string" ? sp.q : "").trim();
+  const qNorm = norm(q);
+
   const board = data.boards[boardKey] ?? data.boards[boardKeys[0]];
   const entries = board?.entries ?? [];
 
-  // Podium is always top 3 by PERSONAL (unfiltered)
-  const podiumSorted = [...entries].sort((a, b) => personal(b) - personal(a));
-  const top3 = podiumSorted.slice(0, 3);
+  // Filter (search)
+  const filtered = qNorm ? entries.filter((e) => norm(e.name).includes(qNorm)) : entries;
 
-  // Filter list by query (paged list only)
-  const filtered = qNorm
-    ? entries.filter((e) => norm(e.name).includes(qNorm))
-    : entries;
-
+  // Sort filtered
   const sorted = [...filtered].sort((a, b) => scoreFor(b, sortKey) - scoreFor(a, sortKey));
 
+  // Podium: use filtered if searching; otherwise use full board
+  const podiumBase = qNorm ? filtered : entries;
+  const podiumSorted = [...podiumBase].sort((a, b) => personal(b) - personal(a));
+  const top3 = podiumSorted.slice(0, 3);
+
+  // Paging
   const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
   const safePage = Math.min(pageNum, totalPages);
   const start = (safePage - 1) * PAGE_SIZE;
@@ -110,30 +111,30 @@ export default async function Page({
     const b = next.board ?? boardKey;
     const s = next.sort ?? sortKey;
     const p = next.page ?? safePage;
-    const qq = next.q ?? q;
+    const qq = (next.q ?? q ?? "").trim();
 
-    const qp = new URLSearchParams();
-    qp.set("board", b);
-    qp.set("sort", s);
-    qp.set("page", String(p));
-    if (qq.trim()) qp.set("q", qq.trim());
+    const params = new URLSearchParams();
+    params.set("board", b);
+    params.set("sort", s);
+    params.set("page", String(p));
+    if (qq) params.set("q", qq);
 
-    return `/?${qp.toString()}`;
+    return `/?${params.toString()}`;
   };
-
-  const activeColClass = "bg-zinc-800/40";
-  const baseColClass = "";
-
-  const col = (key: SortKey) => (sortKey === key ? activeColClass : baseColClass);
 
   return (
     <main className="min-h-screen bg-zinc-950 text-zinc-100 p-6">
-      <div className="max-w-6xl mx-auto space-y-6">
+      <div className="max-w-5xl mx-auto space-y-6">
         <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="text-sm text-zinc-400">Updated: {data.updatedAt}</div>
-            <h1 className="text-3xl font-semibold">🏛️ {board.title} Leaderboard</h1>
-            {board.weekOf ? <div className="text-sm text-zinc-400">Week of: {board.weekOf}</div> : null}
+            <h1 className="text-3xl font-semibold">🏛️ {board?.title ?? "Leaderboard"}</h1>
+            {board?.weekOf ? <div className="text-sm text-zinc-400">Week of: {board.weekOf}</div> : null}
+            {qNorm ? (
+              <div className="text-sm text-zinc-400">
+                Filtered by: <span className="text-zinc-200">{q}</span>
+              </div>
+            ) : null}
           </div>
 
           <div className="text-sm text-zinc-300 flex flex-wrap gap-x-3 gap-y-1">
@@ -150,7 +151,7 @@ export default async function Page({
           activeBoard={boardKey}
           activeSort={sortKey}
           activePage={safePage}
-          activeQuery={q}
+          activeQ={q}
         />
 
         {/* Top 3 */}
@@ -161,9 +162,11 @@ export default async function Page({
               className="rounded-2xl bg-zinc-900/60 border border-zinc-800 p-4"
             >
               <div className="text-sm text-zinc-400">Rank #{i + 1}</div>
+
+              {/* ✅ Name ONLY (no extra label text) */}
               <div className="text-xl font-semibold truncate">{e.name}</div>
 
-              <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+              <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-zinc-200">
                 <div>🏰 {fmt(e.occ)}</div>
                 <div>⛏️ {fmt(e.gather)}</div>
                 <div>⚔️ {fmt(e.pvp)}</div>
@@ -171,7 +174,7 @@ export default async function Page({
               </div>
 
               <div className="mt-3 text-sm text-zinc-300">
-                Personal: <span className="font-semibold">{fmt(personal(e))}</span>
+                Personal: <span className="font-semibold text-zinc-100">{fmt(personal(e))}</span>
               </div>
             </div>
           ))}
@@ -179,19 +182,11 @@ export default async function Page({
 
         {/* Paged List */}
         <section className="rounded-2xl bg-zinc-900/40 border border-zinc-800 overflow-hidden">
-          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between px-4 py-3 border-b border-zinc-800">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800">
             <div className="text-sm text-zinc-300">
               Showing <span className="font-semibold">{sorted.length ? start + 1 : 0}</span>–
-              <span className="font-semibold">
-                {sorted.length ? Math.min(start + PAGE_SIZE, sorted.length) : 0}
-              </span>{" "}
+              <span className="font-semibold">{Math.min(start + PAGE_SIZE, sorted.length)}</span>{" "}
               of <span className="font-semibold">{sorted.length}</span>
-              {q.trim() ? (
-                <span className="text-zinc-400">
-                  {" "}
-                  (filtered by: <span className="text-zinc-200">{q}</span>)
-                </span>
-              ) : null}
             </div>
 
             <div className="flex items-center gap-2 text-sm">
@@ -225,57 +220,38 @@ export default async function Page({
             </div>
           </div>
 
-          {/* Header */}
           <div className="grid grid-cols-12 gap-2 px-4 py-3 text-xs uppercase tracking-wide text-zinc-400 border-b border-zinc-800">
             <div className="col-span-1">#</div>
-            <div className="col-span-3">Player</div>
+            <div className="col-span-4">Player</div>
             <div className="col-span-2 text-right">Personal</div>
-            <div className="col-span-2 text-right">🏰 Occ</div>
-            <div className="col-span-2 text-right">⛏️ Gather</div>
-            <div className="col-span-1 text-right">⚔️ PvP</div>
-            <div className="col-span-1 text-right">🌀 Life</div>
+            <div className="col-span-5 text-right">🏰 ⛏️ ⚔️ 🌀</div>
           </div>
 
-          {/* Rows */}
           {pageItems.map((e, idx) => {
             const rank = start + idx + 1;
-            const zebra = idx % 2 === 0 ? "bg-zinc-950/20" : "bg-transparent";
-
             return (
               <div
                 key={`${rank}-${e.name}`}
-                className={["grid grid-cols-12 gap-2 px-4 py-3 text-sm border-b border-zinc-900/60", zebra].join(" ")}
+                className="grid grid-cols-12 gap-2 px-4 py-3 text-sm border-b border-zinc-900/60 hover:bg-zinc-900/30"
               >
-                <div className="col-span-1 text-zinc-400">{rank}</div>
-                <div className="col-span-3 truncate">{e.name}</div>
+                <div className="col-span-1 text-zinc-500">{rank}</div>
 
-                <div className={["col-span-2 text-right font-semibold", col("personal")].join(" ")}>
+                {/* ✅ Name ONLY */}
+                <div className="col-span-4 truncate text-zinc-100">{e.name}</div>
+
+                <div className="col-span-2 text-right font-semibold text-zinc-100">
                   {fmt(personal(e))}
                 </div>
 
-                <div className={["col-span-2 text-right text-zinc-300", col("occ")].join(" ")}>
-                  {fmt(e.occ)}
-                </div>
-
-                <div className={["col-span-2 text-right text-zinc-300", col("gather")].join(" ")}>
-                  {fmt(e.gather)}
-                </div>
-
-                <div className={["col-span-1 text-right text-zinc-300", col("pvp")].join(" ")}>
-                  {fmt(e.pvp)}
-                </div>
-
-                <div className={["col-span-1 text-right text-zinc-300", col("life")].join(" ")}>
-                  {fmt(e.life)}
+                <div className="col-span-5 text-right text-zinc-300">
+                  {fmt(e.occ)} / {fmt(e.gather)} / {fmt(e.pvp)} / {fmt(e.life)}
                 </div>
               </div>
             );
           })}
 
           {sorted.length === 0 ? (
-            <div className="px-4 py-8 text-sm text-zinc-400">
-              No players match your search.
-            </div>
+            <div className="px-4 py-6 text-sm text-zinc-400">No results.</div>
           ) : null}
         </section>
       </div>

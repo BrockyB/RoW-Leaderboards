@@ -1,37 +1,31 @@
 "use client";
 
+import { useMemo, useState } from "react";
+
 type Props = {
   boardKeys: string[];
   boardTitles: Record<string, string>;
   activeBoard: string;
   activeSort: string;
   activePage: number;
-  activeQuery: string; // NEW
+  activeQ: string; // search query
 };
 
-function isArchivedWeekKey(k: string) {
-  return k.startsWith("week_");
-}
+type BoardGroup = {
+  tabs: string[]; // e.g. ["overall","thisWeek"]
+  archived: string[]; // everything else
+};
 
-function mmdd(iso: string) {
-  const mm = iso.slice(5, 7);
-  const dd = iso.slice(8, 10);
-  if (mm.length === 2 && dd.length === 2) return `${mm}-${dd}`;
-  return iso;
-}
+function groupBoards(keys: string[]): BoardGroup {
+  // Put these first if they exist
+  const pinnedOrder = ["overall", "thisWeek"];
 
-function archivedWeekLabel(key: string, titleFromData?: string) {
-  const t = (titleFromData ?? "").replace(/\(.*?\)/g, "");
-  const matches = t.match(/\d{4}-\d{2}-\d{2}/g);
+  const pinned = pinnedOrder.filter((k) => keys.includes(k));
+  const rest = keys.filter((k) => !pinned.includes(k));
 
-  if (matches && matches.length >= 2) {
-    const start = matches[0];
-    const end = matches[1];
-    return `Week ${mmdd(start)} \u2192 ${mmdd(end)}`;
-  }
-
-  const startIso = key.slice("week_".length);
-  return `Week ${mmdd(startIso)}`;
+  // Try to sort archived by something stable (title is usually "Week 01-16 → 01-22")
+  // If titles don’t exist, fallback to key
+  return { tabs: pinned, archived: rest };
 }
 
 export default function Controls({
@@ -40,97 +34,84 @@ export default function Controls({
   activeBoard,
   activeSort,
   activePage,
-  activeQuery,
+  activeQ,
 }: Props) {
-  const makeHref = (
-    next: Partial<{ board: string; sort: string; page: number; q: string }>
-  ) => {
+  const groups = useMemo(() => groupBoards(boardKeys), [boardKeys]);
+  const [q, setQ] = useState(activeQ ?? "");
+
+  const makeHref = (next: Partial<{ board: string; sort: string; page: number; q: string }>) => {
     const b = next.board ?? activeBoard;
     const s = next.sort ?? activeSort;
     const p = next.page ?? activePage;
-    const q = next.q ?? activeQuery ?? "";
+    const query = (next.q ?? q ?? "").trim();
 
-    const qp = new URLSearchParams();
-    qp.set("board", b);
-    qp.set("sort", s);
-    qp.set("page", String(p));
-    if (q.trim()) qp.set("q", q.trim());
+    const params = new URLSearchParams();
+    params.set("board", b);
+    params.set("sort", s);
+    params.set("page", String(p));
+    if (query) params.set("q", query);
 
-    return `/?${qp.toString()}`;
+    return `/?${params.toString()}`;
   };
 
-  const hasOverall = boardKeys.includes("overall");
-  const hasThisWeek = boardKeys.includes("thisWeek");
-
-  const archivedWeeks = [...boardKeys]
-    .filter(isArchivedWeekKey)
-    .sort((a, b) => b.localeCompare(a));
-
-  const defaultWeekKey = isArchivedWeekKey(activeBoard)
-    ? activeBoard
-    : archivedWeeks[0] ?? "";
+  const onApplySearch = () => {
+    window.location.href = makeHref({ page: 1, q });
+  };
 
   return (
-    <section className="rounded-2xl bg-zinc-900/40 border border-zinc-800 p-4 flex flex-col gap-3">
+    <section className="rounded-2xl bg-zinc-900/40 border border-zinc-800 p-4 space-y-3">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        {/* Left: Board + archive */}
+        {/* Board tabs + archive dropdown */}
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-sm text-zinc-400">Board:</span>
 
-          {hasOverall ? (
-            <a
-              href={makeHref({ board: "overall", page: 1 })}
-              className={[
-                "px-3 py-1 rounded-full border text-sm",
-                activeBoard === "overall"
-                  ? "bg-zinc-100 text-zinc-900 border-zinc-100"
-                  : "border-zinc-700 text-zinc-200 hover:border-zinc-500",
-              ].join(" ")}
-            >
-              {boardTitles["overall"] ?? "Overall"}
-            </a>
-          ) : null}
+          {groups.tabs.map((k) => {
+            const active = k === activeBoard;
+            return (
+              <a
+                key={k}
+                href={makeHref({ board: k, page: 1 })}
+                className={[
+                  "px-3 py-1 rounded-full border text-sm",
+                  active
+                    ? "bg-zinc-100 text-zinc-900 border-zinc-100"
+                    : "border-zinc-700 text-zinc-200 hover:border-zinc-500",
+                ].join(" ")}
+              >
+                {boardTitles[k] ?? k}
+              </a>
+            );
+          })}
 
-          {hasThisWeek ? (
-            <a
-              href={makeHref({ board: "thisWeek", page: 1 })}
-              className={[
-                "px-3 py-1 rounded-full border text-sm",
-                activeBoard === "thisWeek"
-                  ? "bg-zinc-100 text-zinc-900 border-zinc-100"
-                  : "border-zinc-700 text-zinc-200 hover:border-zinc-500",
-              ].join(" ")}
-            >
-              {boardTitles["thisWeek"] ?? "This Week"}
-            </a>
-          ) : null}
-
-          {archivedWeeks.length > 0 ? (
-            <div className="flex items-center gap-2">
+          {groups.archived.length > 0 ? (
+            <div className="flex items-center gap-2 ml-2">
               <span className="text-sm text-zinc-400">Archive:</span>
               <select
-                defaultValue={defaultWeekKey}
-                className={[
-                  "bg-zinc-950 border rounded-xl px-3 py-2 text-sm",
-                  isArchivedWeekKey(activeBoard)
-                    ? "border-zinc-100 text-zinc-100"
-                    : "border-zinc-700 text-zinc-100",
-                ].join(" ")}
+                className="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-zinc-100"
+                value={groups.archived.includes(activeBoard) ? activeBoard : ""}
                 onChange={(e) => {
-                  window.location.href = makeHref({ board: e.target.value, page: 1 });
+                  const v = e.target.value;
+                  if (!v) return;
+                  window.location.href = makeHref({ board: v, page: 1 });
                 }}
               >
-                {archivedWeeks.map((k) => (
-                  <option key={k} value={k}>
-                    {archivedWeekLabel(k, boardTitles[k])}
-                  </option>
-                ))}
+                <option value="" disabled>
+                  Select week…
+                </option>
+                {groups.archived
+                  .slice()
+                  .sort((a, b) => (boardTitles[a] ?? a).localeCompare(boardTitles[b] ?? b))
+                  .map((k) => (
+                    <option key={k} value={k}>
+                      {boardTitles[k] ?? k}
+                    </option>
+                  ))}
               </select>
             </div>
           ) : null}
         </div>
 
-        {/* Right: Sort */}
+        {/* Sort */}
         <div className="flex items-center gap-2">
           <label className="text-sm text-zinc-400" htmlFor="sort">
             Sort:
@@ -138,8 +119,8 @@ export default function Controls({
 
           <select
             id="sort"
-            defaultValue={activeSort}
-            className="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm"
+            value={activeSort}
+            className="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-zinc-100"
             onChange={(e) => {
               window.location.href = makeHref({ sort: e.target.value, page: 1 });
             }}
@@ -153,43 +134,40 @@ export default function Controls({
         </div>
       </div>
 
-      {/* Search row */}
+      {/* Search */}
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-2 w-full">
+        <div className="flex items-center gap-2">
           <label className="text-sm text-zinc-400" htmlFor="q">
             Search:
           </label>
           <input
             id="q"
-            defaultValue={activeQuery}
-            placeholder="Player name…"
-            className="w-full md:w-96 bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                const v = (e.target as HTMLInputElement).value ?? "";
-                window.location.href = makeHref({ q: v, page: 1 });
-              }
+              if (e.key === "Enter") onApplySearch();
             }}
+            placeholder="Player name…"
+            className="w-72 max-w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600"
           />
-          <a
-            href={makeHref({ q: activeQuery, page: 1 })}
+          <button
+            onClick={onApplySearch}
             className="px-3 py-2 rounded-xl border border-zinc-700 text-sm text-zinc-200 hover:border-zinc-500"
-            title="Apply search"
           >
             Apply
-          </a>
-          {activeQuery.trim() ? (
+          </button>
+
+          {activeQ ? (
             <a
               href={makeHref({ q: "", page: 1 })}
-              className="px-3 py-2 rounded-xl border border-zinc-800 text-sm text-zinc-400 hover:border-zinc-600"
-              title="Clear search"
+              className="px-3 py-2 rounded-xl border border-zinc-800 text-sm text-zinc-400 hover:text-zinc-200 hover:border-zinc-600"
             >
               Clear
             </a>
           ) : null}
         </div>
 
-        <div className="text-sm text-zinc-500">
+        <div className="text-xs text-zinc-500">
           Tip: press <span className="text-zinc-300">Enter</span> to search
         </div>
       </div>
