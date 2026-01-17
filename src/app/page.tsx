@@ -51,8 +51,62 @@ function fmt(n: number) {
   return (n || 0).toLocaleString();
 }
 
-function norm(s: string) {
-  return (s ?? "").trim().toLowerCase();
+/**
+ * Website-side name cleanup.
+ * Fixes OCR/name pollution like:
+ *  - "@ Kiyomi Personal Score: 246,587"
+ *  - "Kiyomi — Personal 246,587"
+ */
+function cleanName(raw: string): string {
+  let s = (raw ?? "").trim();
+
+  // remove leading @ and other common prefix noise
+  s = s.replace(/^[@\s]+/, "");
+
+  // remove "Personal Score: 123,456" (case-insensitive)
+  s = s.replace(/\bpersonal\s*score\s*:\s*[\d,]+/gi, "").trim();
+
+  // remove "Personal: 123,456"
+  s = s.replace(/\bpersonal\s*:\s*[\d,]+/gi, "").trim();
+
+  // remove trailing separators left behind (— | - :)
+  s = s.replace(/[\s\-—|:]+$/g, "").trim();
+
+  return s;
+}
+
+/**
+ * Merge duplicate players after cleaning the name.
+ * Key = casefold-ish (lowercase) of cleaned name.
+ * Sums stats so duplicates collapse into one row.
+ */
+function dedupeEntries(entries: Entry[]): Entry[] {
+  const mapմամբ: Record<string, Entry> = {};
+
+  for (const e of entries) {
+    const display = cleanName(e.name);
+    const key = display.toLocaleLowerCase();
+
+    if (!key) continue;
+
+    if (!map
+      [key]) {
+      map[key] = {
+        name: display,
+        occ: e.occ || 0,
+        gather: e.gather || 0,
+        pvp: e.pvp || 0,
+        life: e.life || 0,
+      };
+    } else {
+      map[key].occ += e.occ || 0;
+      map[key].gather += e.gather || 0;
+      map[key].pvp += e.pvp || 0;
+      map[key].life += e.life || 0;
+    }
+  }
+
+  return Object.values(map);
 }
 
 export default async function Page({
@@ -70,12 +124,13 @@ export default async function Page({
 
   const boardKey =
     (typeof sp.board === "string" && boardKeys.includes(sp.board) && sp.board) ||
-    (boardKeys.includes("overall") ? "overall" : boardKeys[0]) ||
+    boardKeys[0] ||
     "overall";
 
   const sortKey = ((): SortKey => {
     const v = typeof sp.sort === "string" ? sp.sort : "personal";
-    if (v === "occ" || v === "gather" || v === "pvp" || v === "life" || v === "personal") return v;
+    if (v === "occ" || v === "gather" || v === "pvp" || v === "life" || v === "personal")
+      return v;
     return "personal";
   })();
 
@@ -84,40 +139,43 @@ export default async function Page({
     return Number.isFinite(v) && v > 0 ? v : 1;
   })();
 
-  const q = (typeof sp.q === "string" ? sp.q : "").trim();
-  const qNorm = norm(q);
+  const q = typeof sp.q === "string" ? sp.q.trim() : "";
 
   const board = data.boards[boardKey] ?? data.boards[boardKeys[0]];
-  const entries = board?.entries ?? [];
+  const rawEntries = board?.entries ?? [];
 
-  // Filter (search)
-  const filtered = qNorm ? entries.filter((e) => norm(e.name).includes(qNorm)) : entries;
+  // ✅ Normalize + merge duplicates BEFORE filtering/sorting
+  const mergedEntries = dedupeEntries(rawEntries);
 
-  // Sort filtered
+  // Search filters the paged list only (as we discussed)
+  const filtered = q
+    ? mergedEntries.filter((e) => e.name.toLocaleLowerCase().includes(q.toLocaleLowerCase()))
+    : mergedEntries;
+
   const sorted = [...filtered].sort((a, b) => scoreFor(b, sortKey) - scoreFor(a, sortKey));
 
-  // Podium: use filtered if searching; otherwise use full board
-  const podiumBase = qNorm ? filtered : entries;
-  const podiumSorted = [...podiumBase].sort((a, b) => personal(b) - personal(a));
+  // Podium is always top 3 by PERSONAL (from full mergedEntries, not filtered)
+  const podiumSorted = [...mergedEntries].sort((a, b) => personal(b) - personal(a));
   const top3 = podiumSorted.slice(0, 3);
 
-  // Paging
   const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
   const safePage = Math.min(pageNum, totalPages);
   const start = (safePage - 1) * PAGE_SIZE;
   const pageItems = sorted.slice(start, start + PAGE_SIZE);
 
-  const makeHref = (next: Partial<{ board: string; sort: string; page: number; q: string }>) => {
+  const makeHref = (
+    next: Partial<{ board: string; sort: string; page: number; q: string }>
+  ) => {
     const b = next.board ?? boardKey;
     const s = next.sort ?? sortKey;
     const p = next.page ?? safePage;
-    const qq = (next.q ?? q ?? "").trim();
+    const nq = next.q ?? q;
 
     const params = new URLSearchParams();
     params.set("board", b);
     params.set("sort", s);
     params.set("page", String(p));
-    if (qq) params.set("q", qq);
+    if (nq) params.set("q", nq);
 
     return `/?${params.toString()}`;
   };
@@ -128,12 +186,9 @@ export default async function Page({
         <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="text-sm text-zinc-400">Updated: {data.updatedAt}</div>
-            <h1 className="text-3xl font-semibold">🏛️ {board?.title ?? "Leaderboard"}</h1>
-            {board?.weekOf ? <div className="text-sm text-zinc-400">Week of: {board.weekOf}</div> : null}
-            {qNorm ? (
-              <div className="text-sm text-zinc-400">
-                Filtered by: <span className="text-zinc-200">{q}</span>
-              </div>
+            <h1 className="text-3xl font-semibold">🏛️ {board.title} Leaderboard</h1>
+            {board.weekOf ? (
+              <div className="text-sm text-zinc-400">Week of: {board.weekOf}</div>
             ) : null}
           </div>
 
@@ -151,7 +206,7 @@ export default async function Page({
           activeBoard={boardKey}
           activeSort={sortKey}
           activePage={safePage}
-          activeQ={q}
+          activeQuery={q}
         />
 
         {/* Top 3 */}
@@ -162,11 +217,9 @@ export default async function Page({
               className="rounded-2xl bg-zinc-900/60 border border-zinc-800 p-4"
             >
               <div className="text-sm text-zinc-400">Rank #{i + 1}</div>
-
-              {/* ✅ Name ONLY (no extra label text) */}
               <div className="text-xl font-semibold truncate">{e.name}</div>
 
-              <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-zinc-200">
+              <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                 <div>🏰 {fmt(e.occ)}</div>
                 <div>⛏️ {fmt(e.gather)}</div>
                 <div>⚔️ {fmt(e.pvp)}</div>
@@ -174,7 +227,7 @@ export default async function Page({
               </div>
 
               <div className="mt-3 text-sm text-zinc-300">
-                Personal: <span className="font-semibold text-zinc-100">{fmt(personal(e))}</span>
+                Personal: <span className="font-semibold">{fmt(personal(e))}</span>
               </div>
             </div>
           ))}
@@ -184,8 +237,15 @@ export default async function Page({
         <section className="rounded-2xl bg-zinc-900/40 border border-zinc-800 overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800">
             <div className="text-sm text-zinc-300">
+              {q ? (
+                <>
+                  Filtered by: <span className="font-semibold">{q}</span> —{" "}
+                </>
+              ) : null}
               Showing <span className="font-semibold">{sorted.length ? start + 1 : 0}</span>–
-              <span className="font-semibold">{Math.min(start + PAGE_SIZE, sorted.length)}</span>{" "}
+              <span className="font-semibold">
+                {sorted.length ? Math.min(start + PAGE_SIZE, sorted.length) : 0}
+              </span>{" "}
               of <span className="font-semibold">{sorted.length}</span>
             </div>
 
@@ -220,41 +280,74 @@ export default async function Page({
             </div>
           </div>
 
+          {/* Header row */}
           <div className="grid grid-cols-12 gap-2 px-4 py-3 text-xs uppercase tracking-wide text-zinc-400 border-b border-zinc-800">
             <div className="col-span-1">#</div>
-            <div className="col-span-4">Player</div>
-            <div className="col-span-2 text-right">Personal</div>
-            <div className="col-span-5 text-right">🏰 ⛏️ ⚔️ 🌀</div>
+            <div className="col-span-3">Player</div>
+
+            <div
+              className={[
+                "col-span-2 text-right",
+                sortKey === "personal" ? "text-zinc-200" : "",
+              ].join(" ")}
+            >
+              Personal
+            </div>
+            <div className={["col-span-2 text-right", sortKey === "occ" ? "text-zinc-200" : ""].join(" ")}>
+              🏰 Occ
+            </div>
+            <div
+              className={[
+                "col-span-2 text-right",
+                sortKey === "gather" ? "text-zinc-200" : "",
+              ].join(" ")}
+            >
+              ⛏️ Gather
+            </div>
+            <div className={["col-span-1 text-right", sortKey === "pvp" ? "text-zinc-200" : ""].join(" ")}>
+              ⚔️
+            </div>
+            <div className={["col-span-1 text-right", sortKey === "life" ? "text-zinc-200" : ""].join(" ")}>
+              🌀
+            </div>
           </div>
 
           {pageItems.map((e, idx) => {
             const rank = start + idx + 1;
+            const zebra = idx % 2 === 0 ? "bg-zinc-950/10" : "bg-zinc-950/20";
+
+            const highlight = (k: SortKey) =>
+              sortKey === k ? "bg-zinc-100/10 rounded-lg px-2 py-1" : "px-2 py-1";
+
             return (
               <div
                 key={`${rank}-${e.name}`}
-                className="grid grid-cols-12 gap-2 px-4 py-3 text-sm border-b border-zinc-900/60 hover:bg-zinc-900/30"
+                className={`grid grid-cols-12 gap-2 px-4 py-2 text-sm border-b border-zinc-900/60 ${zebra}`}
               >
-                <div className="col-span-1 text-zinc-500">{rank}</div>
+                <div className="col-span-1 text-zinc-400">{rank}</div>
+                <div className="col-span-3 truncate">{e.name}</div>
 
-                {/* ✅ Name ONLY */}
-                <div className="col-span-4 truncate text-zinc-100">{e.name}</div>
-
-                <div className="col-span-2 text-right font-semibold text-zinc-100">
+                <div className={`col-span-2 text-right font-semibold ${highlight("personal")}`}>
                   {fmt(personal(e))}
                 </div>
-
-                <div className="col-span-5 text-right text-zinc-300">
-                  {fmt(e.occ)} / {fmt(e.gather)} / {fmt(e.pvp)} / {fmt(e.life)}
+                <div className={`col-span-2 text-right text-zinc-200 ${highlight("occ")}`}>
+                  {fmt(e.occ)}
+                </div>
+                <div className={`col-span-2 text-right text-zinc-200 ${highlight("gather")}`}>
+                  {fmt(e.gather)}
+                </div>
+                <div className={`col-span-1 text-right text-zinc-200 ${highlight("pvp")}`}>
+                  {fmt(e.pvp)}
+                </div>
+                <div className={`col-span-1 text-right text-zinc-200 ${highlight("life")}`}>
+                  {fmt(e.life)}
                 </div>
               </div>
             );
           })}
-
-          {sorted.length === 0 ? (
-            <div className="px-4 py-6 text-sm text-zinc-400">No results.</div>
-          ) : null}
         </section>
       </div>
     </main>
   );
 }
+
