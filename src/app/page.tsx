@@ -56,9 +56,14 @@ function fmt(n: number) {
    OCR ALIAS MAP (Step A)
    ============================ */
 const NAME_ALIASES: Record<string, string> = {
-  // Add your exact mappings here. Keys are compared AFTER cleanName()
-  "sqgeking": "SØGEKING",
+  // old OCR form
   "upnice) i238": "Up n1ce小皮鞭",
+
+  // cleaned / canonical form (THIS WAS MISSING)
+  "up n1ce小皮鞭": "Up n1ce小皮鞭",
+
+  // others
+  "sqgeking": "SØGEKING",
 };
 
 function cleanName(raw: string): string {
