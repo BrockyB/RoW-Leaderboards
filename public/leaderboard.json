@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-01-19T06:53:52.977032Z",
+  "updatedAt": "2026-01-19T06:59:46.025999Z",
   "boards": {
     "overall": {
       "title": "Overall",
@@ -166,7 +166,7 @@
           "life": 0
         },
         {
-          "name": "Bren",
+          "name": "Ɓren",
           "occ": 27047,
           "gather": 96,
           "pvp": 42997,
@@ -240,6 +240,13 @@
           "occ": 33199,
           "gather": 0,
           "pvp": 25356,
+          "life": 0
+        },
+        {
+          "name": "Piikepoke",
+          "occ": 26527,
+          "gather": 0,
+          "pvp": 30982,
           "life": 0
         },
         {
@@ -369,6 +376,13 @@
           "life": 0
         },
         {
+          "name": "MANDALORIANᵀᴴ",
+          "occ": 28789,
+          "gather": 0,
+          "pvp": 13439,
+          "life": 0
+        },
+        {
           "name": "メRuler",
           "occ": 16203,
           "gather": 0,
@@ -397,11 +411,11 @@
           "life": 0
         },
         {
-          "name": "RemtH",
+          "name": "Remᵀᴴ",
           "occ": 29019,
           "gather": 0,
           "pvp": 9524,
-          "life": 40
+          "life": 0
         },
         {
           "name": "Ardgenta",
@@ -469,9 +483,9 @@
         {
           "name": "Aeowyn Jr",
           "occ": 15032,
-          "gather": 2,
-          "pvp": 0,
-          "life": 1578
+          "gather": 0,
+          "pvp": 1578,
+          "life": 0
         }
       ]
     },
@@ -640,7 +654,7 @@
           "life": 0
         },
         {
-          "name": "Bren",
+          "name": "Ɓren",
           "occ": 27047,
           "gather": 96,
           "pvp": 42997,
@@ -714,6 +728,13 @@
           "occ": 33199,
           "gather": 0,
           "pvp": 25356,
+          "life": 0
+        },
+        {
+          "name": "Piikepoke",
+          "occ": 26527,
+          "gather": 0,
+          "pvp": 30982,
           "life": 0
         },
         {
@@ -843,6 +864,13 @@
           "life": 0
         },
         {
+          "name": "MANDALORIANᵀᴴ",
+          "occ": 28789,
+          "gather": 0,
+          "pvp": 13439,
+          "life": 0
+        },
+        {
           "name": "メRuler",
           "occ": 16203,
           "gather": 0,
@@ -871,11 +899,11 @@
           "life": 0
         },
         {
-          "name": "RemtH",
+          "name": "Remᵀᴴ",
           "occ": 29019,
           "gather": 0,
           "pvp": 9524,
-          "life": 40
+          "life": 0
         },
         {
           "name": "Ardgenta",
@@ -943,9 +971,9 @@
         {
           "name": "Aeowyn Jr",
           "occ": 15032,
-          "gather": 2,
-          "pvp": 0,
-          "life": 1578
+          "gather": 0,
+          "pvp": 1578,
+          "life": 0
         }
       ]
     },
@@ -1114,7 +1142,7 @@
           "life": 0
         },
         {
-          "name": "Bren",
+          "name": "Ɓren",
           "occ": 27047,
           "gather": 96,
           "pvp": 42997,
@@ -1188,6 +1216,13 @@
           "occ": 33199,
           "gather": 0,
           "pvp": 25356,
+          "life": 0
+        },
+        {
+          "name": "Piikepoke",
+          "occ": 26527,
+          "gather": 0,
+          "pvp": 30982,
           "life": 0
         },
         {
@@ -1317,6 +1352,13 @@
           "life": 0
         },
         {
+          "name": "MANDALORIANᵀᴴ",
+          "occ": 28789,
+          "gather": 0,
+          "pvp": 13439,
+          "life": 0
+        },
+        {
           "name": "メRuler",
           "occ": 16203,
           "gather": 0,
@@ -1345,11 +1387,11 @@
           "life": 0
         },
         {
-          "name": "RemtH",
+          "name": "Remᵀᴴ",
           "occ": 29019,
           "gather": 0,
           "pvp": 9524,
-          "life": 40
+          "life": 0
         },
         {
           "name": "Ardgenta",
@@ -1417,9 +1459,9 @@
         {
           "name": "Aeowyn Jr",
           "occ": 15032,
-          "gather": 2,
-          "pvp": 0,
-          "life": 1578
+          "gather": 0,
+          "pvp": 1578,
+          "life": 0
         }
       ],
       "weekOf": "2026-01-16"
