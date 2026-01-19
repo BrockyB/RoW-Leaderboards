@@ -1,17 +1,629 @@
 {
-  "updatedAt": "2026-01-19T02:24:41.258379Z",
+  "updatedAt": "2026-01-19T02:36:17.929494Z",
   "boards": {
     "overall": {
       "title": "Overall",
-      "entries": []
+      "entries": [
+        {
+          "name": "LoloZéR",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 152340,
+          "life": 0
+        },
+        {
+          "name": "+7 WECLIpse\\ +v",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 97544,
+          "life": 0
+        },
+        {
+          "name": "TasteTheeRambo",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 96344,
+          "life": 0
+        },
+        {
+          "name": "Ktyomt",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 94552,
+          "life": 0
+        },
+        {
+          "name": "[§ Kepazeus",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 87338,
+          "life": 0
+        },
+        {
+          "name": "kalkane",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 82328,
+          "life": 0
+        },
+        {
+          "name": "DevillndRa",
+          "occ": 16219,
+          "gather": 0,
+          "pvp": 74720,
+          "life": 0
+        },
+        {
+          "name": "lslelele",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 72353,
+          "life": 0
+        },
+        {
+          "name": "Batch@ll",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 63233,
+          "life": 0
+        },
+        {
+          "name": "Wawaa",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 60893,
+          "life": 0
+        },
+        {
+          "name": "Exodus",
+          "occ": 16243,
+          "gather": 712,
+          "pvp": 58592,
+          "life": 0
+        },
+        {
+          "name": "Jabami 3+",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 59325,
+          "life": 0
+        },
+        {
+          "name": "pripeGrizzlyBear",
+          "occ": 16203,
+          "gather": 157,
+          "pvp": 52460,
+          "life": 0
+        },
+        {
+          "name": "Lanie",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 44631,
+          "life": 0
+        },
+        {
+          "name": "JAck SpaRROW",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 42565,
+          "life": 300
+        },
+        {
+          "name": "S@GEKING",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 39864,
+          "life": 0
+        },
+        {
+          "name": "McLovinKun",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 37737,
+          "life": 0
+        },
+        {
+          "name": "Tiho",
+          "occ": 16243,
+          "gather": 9,
+          "pvp": 35986,
+          "life": 0
+        },
+        {
+          "name": "CHILLING",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 35610,
+          "life": 0
+        },
+        {
+          "name": "413x31",
+          "occ": 16211,
+          "gather": 0,
+          "pvp": 3,
+          "life": 35145
+        },
+        {
+          "name": "kUxBrockyBx",
+          "occ": 16243,
+          "gather": 0,
+          "pvp": 29390,
+          "life": 350
+        },
+        {
+          "name": "JamemeTH",
+          "occ": 16358,
+          "gather": 0,
+          "pvp": 27032,
+          "life": 0
+        },
+        {
+          "name": "1% Menaz S",
+          "occ": 12640,
+          "gather": 0,
+          "pvp": 30184,
+          "life": 0
+        },
+        {
+          "name": "Ruler",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 25929,
+          "life": 0
+        },
+        {
+          "name": "Rock Poli",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 22994,
+          "life": 0
+        },
+        {
+          "name": "Ardgenta",
+          "occ": 16203,
+          "gather": 9,
+          "pvp": 21312,
+          "life": 0
+        },
+        {
+          "name": "7°x%zoreqqee",
+          "occ": 16211,
+          "gather": 0,
+          "pvp": 20529,
+          "life": 0
+        },
+        {
+          "name": "x Inquisitor x",
+          "occ": 16203,
+          "gather": 954,
+          "pvp": 17229,
+          "life": 0
+        },
+        {
+          "name": "1% VanbEavi 3",
+          "occ": 3592,
+          "gather": 0,
+          "pvp": 29000,
+          "life": 0
+        }
+      ]
     },
     "thisWeek": {
       "title": "This Week",
-      "entries": []
+      "entries": [
+        {
+          "name": "LoloZéR",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 152340,
+          "life": 0
+        },
+        {
+          "name": "+7 WECLIpse\\ +v",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 97544,
+          "life": 0
+        },
+        {
+          "name": "TasteTheeRambo",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 96344,
+          "life": 0
+        },
+        {
+          "name": "Ktyomt",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 94552,
+          "life": 0
+        },
+        {
+          "name": "[§ Kepazeus",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 87338,
+          "life": 0
+        },
+        {
+          "name": "kalkane",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 82328,
+          "life": 0
+        },
+        {
+          "name": "DevillndRa",
+          "occ": 16219,
+          "gather": 0,
+          "pvp": 74720,
+          "life": 0
+        },
+        {
+          "name": "lslelele",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 72353,
+          "life": 0
+        },
+        {
+          "name": "Batch@ll",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 63233,
+          "life": 0
+        },
+        {
+          "name": "Wawaa",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 60893,
+          "life": 0
+        },
+        {
+          "name": "Exodus",
+          "occ": 16243,
+          "gather": 712,
+          "pvp": 58592,
+          "life": 0
+        },
+        {
+          "name": "Jabami 3+",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 59325,
+          "life": 0
+        },
+        {
+          "name": "pripeGrizzlyBear",
+          "occ": 16203,
+          "gather": 157,
+          "pvp": 52460,
+          "life": 0
+        },
+        {
+          "name": "Lanie",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 44631,
+          "life": 0
+        },
+        {
+          "name": "JAck SpaRROW",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 42565,
+          "life": 300
+        },
+        {
+          "name": "S@GEKING",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 39864,
+          "life": 0
+        },
+        {
+          "name": "McLovinKun",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 37737,
+          "life": 0
+        },
+        {
+          "name": "Tiho",
+          "occ": 16243,
+          "gather": 9,
+          "pvp": 35986,
+          "life": 0
+        },
+        {
+          "name": "CHILLING",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 35610,
+          "life": 0
+        },
+        {
+          "name": "413x31",
+          "occ": 16211,
+          "gather": 0,
+          "pvp": 3,
+          "life": 35145
+        },
+        {
+          "name": "kUxBrockyBx",
+          "occ": 16243,
+          "gather": 0,
+          "pvp": 29390,
+          "life": 350
+        },
+        {
+          "name": "JamemeTH",
+          "occ": 16358,
+          "gather": 0,
+          "pvp": 27032,
+          "life": 0
+        },
+        {
+          "name": "1% Menaz S",
+          "occ": 12640,
+          "gather": 0,
+          "pvp": 30184,
+          "life": 0
+        },
+        {
+          "name": "Ruler",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 25929,
+          "life": 0
+        },
+        {
+          "name": "Rock Poli",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 22994,
+          "life": 0
+        },
+        {
+          "name": "Ardgenta",
+          "occ": 16203,
+          "gather": 9,
+          "pvp": 21312,
+          "life": 0
+        },
+        {
+          "name": "7°x%zoreqqee",
+          "occ": 16211,
+          "gather": 0,
+          "pvp": 20529,
+          "life": 0
+        },
+        {
+          "name": "x Inquisitor x",
+          "occ": 16203,
+          "gather": 954,
+          "pvp": 17229,
+          "life": 0
+        },
+        {
+          "name": "1% VanbEavi 3",
+          "occ": 3592,
+          "gather": 0,
+          "pvp": 29000,
+          "life": 0
+        }
+      ]
     },
     "week_2026-01-16": {
       "title": "Week of 2026-01-16 → 2026-01-22",
-      "entries": [],
+      "entries": [
+        {
+          "name": "LoloZéR",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 152340,
+          "life": 0
+        },
+        {
+          "name": "+7 WECLIpse\\ +v",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 97544,
+          "life": 0
+        },
+        {
+          "name": "TasteTheeRambo",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 96344,
+          "life": 0
+        },
+        {
+          "name": "Ktyomt",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 94552,
+          "life": 0
+        },
+        {
+          "name": "[§ Kepazeus",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 87338,
+          "life": 0
+        },
+        {
+          "name": "kalkane",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 82328,
+          "life": 0
+        },
+        {
+          "name": "DevillndRa",
+          "occ": 16219,
+          "gather": 0,
+          "pvp": 74720,
+          "life": 0
+        },
+        {
+          "name": "lslelele",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 72353,
+          "life": 0
+        },
+        {
+          "name": "Batch@ll",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 63233,
+          "life": 0
+        },
+        {
+          "name": "Wawaa",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 60893,
+          "life": 0
+        },
+        {
+          "name": "Exodus",
+          "occ": 16243,
+          "gather": 712,
+          "pvp": 58592,
+          "life": 0
+        },
+        {
+          "name": "Jabami 3+",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 59325,
+          "life": 0
+        },
+        {
+          "name": "pripeGrizzlyBear",
+          "occ": 16203,
+          "gather": 157,
+          "pvp": 52460,
+          "life": 0
+        },
+        {
+          "name": "Lanie",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 44631,
+          "life": 0
+        },
+        {
+          "name": "JAck SpaRROW",
+          "occ": 16278,
+          "gather": 0,
+          "pvp": 42565,
+          "life": 300
+        },
+        {
+          "name": "S@GEKING",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 39864,
+          "life": 0
+        },
+        {
+          "name": "McLovinKun",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 37737,
+          "life": 0
+        },
+        {
+          "name": "Tiho",
+          "occ": 16243,
+          "gather": 9,
+          "pvp": 35986,
+          "life": 0
+        },
+        {
+          "name": "CHILLING",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 35610,
+          "life": 0
+        },
+        {
+          "name": "413x31",
+          "occ": 16211,
+          "gather": 0,
+          "pvp": 3,
+          "life": 35145
+        },
+        {
+          "name": "kUxBrockyBx",
+          "occ": 16243,
+          "gather": 0,
+          "pvp": 29390,
+          "life": 350
+        },
+        {
+          "name": "JamemeTH",
+          "occ": 16358,
+          "gather": 0,
+          "pvp": 27032,
+          "life": 0
+        },
+        {
+          "name": "1% Menaz S",
+          "occ": 12640,
+          "gather": 0,
+          "pvp": 30184,
+          "life": 0
+        },
+        {
+          "name": "Ruler",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 25929,
+          "life": 0
+        },
+        {
+          "name": "Rock Poli",
+          "occ": 16203,
+          "gather": 0,
+          "pvp": 22994,
+          "life": 0
+        },
+        {
+          "name": "Ardgenta",
+          "occ": 16203,
+          "gather": 9,
+          "pvp": 21312,
+          "life": 0
+        },
+        {
+          "name": "7°x%zoreqqee",
+          "occ": 16211,
+          "gather": 0,
+          "pvp": 20529,
+          "life": 0
+        },
+        {
+          "name": "x Inquisitor x",
+          "occ": 16203,
+          "gather": 954,
+          "pvp": 17229,
+          "life": 0
+        },
+        {
+          "name": "1% VanbEavi 3",
+          "occ": 3592,
+          "gather": 0,
+          "pvp": 29000,
+          "life": 0
+        }
+      ],
       "weekOf": "2026-01-16"
     }
   }
