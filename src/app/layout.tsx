@@ -6,6 +6,29 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "RoW Leaderboards",
   description: "Roots of War Leaderboards",
+
+  openGraph: {
+    title: "🏆 Roots of War Leaderboards",
+    description: "Live RoW leaderboards updated automatically from Discord.",
+    url: "https://row-leaderboards.vercel.app/",
+    siteName: "RoW Leaderboards",
+    type: "website",
+    images: [
+      {
+        url: "https://row-leaderboards.vercel.app/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Roots of War Leaderboards",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "🏆 Roots of War Leaderboards",
+    description: "Live RoW leaderboards updated automatically from Discord.",
+    images: ["https://row-leaderboards.vercel.app/og.png"],
+  },
 };
 
 export default function RootLayout({
