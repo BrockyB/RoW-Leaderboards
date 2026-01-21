@@ -28,10 +28,6 @@ export const metadata: Metadata = {
     description: "Live RoW leaderboards updated automatically from Discord.",
     images: ["https://row-leaderboards.vercel.app/og.png"],
   },
-
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({
@@ -47,16 +43,96 @@ export default function RootLayout({
           aria-hidden="true"
           className="pointer-events-none fixed inset-0"
           style={{ zIndex: -3 }}
-        >         
-          {/* Fire wash */}
-          <div className="row-fire-wash" />
+        >
+          {/* Smoke texture layers (kept) */}
+          <div className="row-smoke-wrap">
+            <div className="row-smoke row-smoke-a" />
+            <div className="row-smoke row-smoke-b" />
+          </div>
+
+          {/* Fire wash (kept) */}
+          <div className="row-fire-wash absolute inset-0" />
         </div>
 
-        {/* Injected CSS for background stack */}
+        {/* Page content */}
+        {children}
+
+        {/* ================= BACKGROUND STYLES ================= */}
         <style
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: `
-/* ================= ROOT BACKGROUND STACK ================= */
+/* ================= SMOKE (TEXTURE LAYERS) ================= */
+
+.row-smoke-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+:root {
+  --row-smoke-tex: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='900' height='520' viewBox='0 0 900 520'>\
+  <defs>\
+    <filter id='f' x='-20%' y='-20%' width='140%' height='140%'>\
+      <feTurbulence type='fractalNoise' baseFrequency='0.011 0.022' numOctaves='4' seed='7' stitchTiles='stitch'/>\
+      <feGaussianBlur stdDeviation='10'/>\
+    </filter>\
+    <linearGradient id='fade' x1='0' y1='0' x2='0' y2='1'>\
+      <stop offset='0' stop-color='rgba(255,255,255,0)'/>\
+      <stop offset='0.6' stop-color='rgba(255,255,255,0.5)'/>\
+      <stop offset='1' stop-color='rgba(255,255,255,0.9)'/>\
+    </linearGradient>\
+    <mask id='m'>\
+      <rect width='900' height='520' fill='url(%23fade)'/>\
+    </mask>\
+  </defs>\
+  <rect width='900' height='520' filter='url(%23f)' mask='url(%23m)' fill='white' opacity='0.9'/>\
+</svg>");
+}
+
+.row-smoke {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -12%;
+  height: 78vh;
+
+  background-image: var(--row-smoke-tex);
+  background-repeat: repeat-x;
+  background-position: 0% 100%;
+  background-size: 980px auto;
+
+  transform-origin: 50% 100%;
+  mix-blend-mode: screen;
+}
+
+.row-smoke-a {
+  opacity: 0.16;
+  filter: blur(3px);
+  animation: rowSmokeBreatheA 11s ease-in-out infinite;
+}
+
+.row-smoke-b {
+  opacity: 0.11;
+  filter: blur(1.5px);
+  animation: rowSmokeBreatheB 15s ease-in-out infinite;
+}
+
+@keyframes rowSmokeBreatheA {
+  0%   { transform: translateY(0px) scale(1.02); background-position: 0% 100%; }
+  50%  { transform: translateY(-10px) scale(1.04); background-position: 45% 100%; }
+  100% { transform: translateY(0px) scale(1.02); background-position: 0% 100%; }
+}
+
+@keyframes rowSmokeBreatheB {
+  0%   { transform: translateY(0px) scale(1.03); background-position: 0% 100%; }
+  50%  { transform: translateY(-14px) scale(1.06); background-position: 60% 100%; }
+  100% { transform: translateY(0px) scale(1.03); background-position: 0% 100%; }
+}
+
+/* ================= FIRE WASH ================= */
 
 .row-fire-wash {
   position: absolute;
@@ -71,12 +147,9 @@ export default function RootLayout({
   pointer-events: none;
 }
 
-/* ================= REDUCED MOTION ================= */
-
 @media (prefers-reduced-motion: reduce) {
-  .row-fire-wash {
-    animation: none;
-  }
+  .row-fire-wash { animation: none; }
+  .row-smoke-a, .row-smoke-b { animation: none; }
 }
 
 @keyframes rowFireFlicker {
@@ -88,3 +161,7 @@ export default function RootLayout({
 `,
           }}
         />
+      </body>
+    </html>
+  );
+}
