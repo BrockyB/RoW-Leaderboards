@@ -54,28 +54,23 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-
-  /* CHANGED: push behind canvas */
   z-index: -6;
 
   background-image: url("/og-plain.png");
   background-repeat: no-repeat;
   background-position: center;
-  filter: brightness(1.12) contrast(1.06);
-
-  /* Goal #3: wider / more present */
   background-size: cover;
 
-  opacity: 0.105;
-  filter: blur(0.4px);
+  opacity: 0.45;
+  filter: brightness(1.12) contrast(1.06);
 
   mask-image: radial-gradient(
     circle at center,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.9) 40%,
-    rgba(0, 0, 0, 0.6) 60%,
-    rgba(0, 0, 0, 0.25) 75%,
-    transparent 100%
+    rgba(0, 0, 0, 0.95) 45%,
+    rgba(0, 0, 0, 0.75) 65%,
+    rgba(0, 0, 0, 0.55) 80%,
+    rgba(0, 0, 0, 0.15) 100%
   );
 }
 
