@@ -83,45 +83,34 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-
-  /* CHANGED: push behind canvas */
   z-index: -5;
 
   background:
     radial-gradient(
       70% 100% at 50% 50%,
       transparent 0%,
-      rgba(0, 0, 0, 0.35) 55%,
-      rgba(0, 0, 0, 0.75) 100%
+      rgba(0, 0, 0, 0.18) 55%,
+      rgba(0, 0, 0, 0.42) 100%
     ),
     linear-gradient(
       to right,
-      rgba(239, 68, 68, 0.065) 0%,
-      rgba(239, 68, 68, 0.02) 14%,
+      rgba(239, 68, 68, 0.04) 0%,
+      rgba(239, 68, 68, 0.012) 14%,
       transparent 30%,
       transparent 70%,
-      rgba(239, 68, 68, 0.02) 86%,
-      rgba(239, 68, 68, 0.065) 100%
+      rgba(239, 68, 68, 0.012) 86%,
+      rgba(239, 68, 68, 0.04) 100%
     ),
     repeating-radial-gradient(
       circle at 50% 50%,
-      rgba(255, 255, 255, 0.015) 0px,
-      rgba(255, 255, 255, 0.015) 1px,
+      rgba(255, 255, 255, 0.012) 0px,
+      rgba(255, 255, 255, 0.012) 1px,
       transparent 1px,
       transparent 2px
     );
 
-  opacity: 0.72;
-  animation: side-drift 22s ease-in-out infinite alternate;
-}
-
-@keyframes side-drift {
-  0% {
-    background-position: center, 0 0, center;
-  }
-  100% {
-    background-position: center, 6px 0, center;
-  }
+  opacity: 0.48;          /* was 0.72 */
+  animation: none;         /* stop the drift */
 }
 
 /* ===== Frame layering ===== */
