@@ -63,7 +63,7 @@ body::before {
   background-position: center;
 
   /* Goal #3: wider / more present */
-  background-size: min(980px, 86vw);
+  background-size: cover;
 
   opacity: 0.105;
   filter: blur(0.4px);
