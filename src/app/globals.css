@@ -109,7 +109,7 @@ body::after {
       transparent 2px
     );
 
-  opacity: 0.48;          /* was 0.72 */
+  opacity: 0.25;          /* was 0.72 */
   animation: none;         /* stop the drift */
 }
 
