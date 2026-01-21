@@ -53,7 +53,7 @@ body::before {
   pointer-events: none;
   z-index: -6;
 
-  background-image: url("/bg.webp");
+  background-image: url("/og-plain");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
