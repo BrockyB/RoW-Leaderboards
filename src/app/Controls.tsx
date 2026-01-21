@@ -1,7 +1,8 @@
 // src/app/Controls.tsx
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   boardKeys: string[];
@@ -20,6 +21,9 @@ export default function Controls({
   activePage,
   activeQuery = "",
 }: Props) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   const [query, setQuery] = useState(activeQuery);
 
   const { primary, archived } = useMemo(() => {
@@ -30,7 +34,6 @@ export default function Controls({
 
     const archivedKeys = keys.filter((k) => !primaryKeys.includes(k));
 
-    // Sort archived by title (so weeks appear nicely)
     archivedKeys.sort((a, b) => {
       const ta = (boardTitles[a] ?? a).toLowerCase();
       const tb = (boardTitles[b] ?? b).toLowerCase();
@@ -40,7 +43,9 @@ export default function Controls({
     return { primary: primaryKeys, archived: archivedKeys };
   }, [boardKeys, boardTitles]);
 
-  const makeHref = (next: Partial<{ board: string; sort: string; page: number; q: string }>) => {
+  const makeHref = (
+    next: Partial<{ board: string; sort: string; page: number; q: string }>
+  ) => {
     const b = next.board ?? activeBoard;
     const s = next.sort ?? activeSort;
     const p = next.page ?? activePage;
@@ -55,8 +60,13 @@ export default function Controls({
     return `/?${params.toString()}`;
   };
 
-  const go = (next: Partial<{ board: string; sort: string; page: number; q: string }>) => {
-    window.location.href = makeHref(next);
+  const go = (
+    next: Partial<{ board: string; sort: string; page: number; q: string }>
+  ) => {
+    const href = makeHref(next);
+    startTransition(() => {
+      router.push(href);
+    });
   };
 
   return (
@@ -71,12 +81,15 @@ export default function Controls({
             return (
               <button
                 key={k}
+                type="button"
                 onClick={() => go({ board: k, page: 1 })}
+                disabled={isPending}
                 className={[
                   "px-3 py-1 rounded-full border text-sm",
                   active
                     ? "bg-zinc-100 text-zinc-900 border-zinc-100"
                     : "border-zinc-700 text-zinc-200 hover:border-zinc-500",
+                  isPending ? "opacity-60 cursor-not-allowed" : "",
                 ].join(" ")}
               >
                 {boardTitles[k] ?? k}
@@ -90,6 +103,7 @@ export default function Controls({
               <select
                 value={archived.includes(activeBoard) ? activeBoard : ""}
                 className="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-zinc-200"
+                disabled={isPending}
                 onChange={(e) => {
                   const v = e.target.value;
                   if (v) go({ board: v, page: 1 });
@@ -119,8 +133,13 @@ export default function Controls({
             className="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm w-56 text-zinc-100"
           />
           <button
+            type="button"
             onClick={() => go({ q: query.trim(), page: 1 })}
-            className="px-3 py-2 rounded-xl border border-zinc-700 hover:border-zinc-500 text-sm"
+            disabled={isPending}
+            className={[
+              "px-3 py-2 rounded-xl border border-zinc-700 hover:border-zinc-500 text-sm",
+              isPending ? "opacity-60 cursor-not-allowed" : "",
+            ].join(" ")}
           >
             Apply
           </button>
@@ -137,6 +156,7 @@ export default function Controls({
           id="sort"
           value={activeSort}
           className="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm"
+          disabled={isPending}
           onChange={(e) => go({ sort: e.target.value, page: 1 })}
         >
           <option value="personal">Personal</option>
