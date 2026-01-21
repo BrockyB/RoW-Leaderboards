@@ -51,15 +51,18 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -6;
+  z-index: -1;
 
-  background-image: url("/og-plain");
+  background-image: url("/og-plain.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
   opacity: 0.45;
   filter: brightness(1.12) contrast(1.06);
+
+  animation: none;
+  transform: none;
 
   mask-image: radial-gradient(
     circle at center,
