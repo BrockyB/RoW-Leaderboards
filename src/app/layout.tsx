@@ -40,6 +40,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-zinc-950 text-zinc-100 antialiased">
+        {/* Embers overlay video (transparent WebM) */}
+        <video
+          id="embers-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="/embers.webm" type="video/webm" />
+        </video>
+
         {/* Background stack (NO SMOKE, NO CANVAS) */}
         <div
           aria-hidden="true"

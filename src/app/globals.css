@@ -19,9 +19,13 @@
 html,
 body {
   min-height: 100%;
+  background: #060606; /* prevents any white fallback */
 }
 
 body {
+  margin: 0;
+  min-height: 100svh;
+
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 
@@ -37,18 +41,11 @@ body {
   background-size: 1600px 800px, 1400px 900px, auto;
   background-position: 50% -220px, 12% 80px, 0 0;
 
-  animation: bg-drift 36s ease-in-out infinite alternate;
+  /* IMPORTANT: remove drift animation to stop twitching */
+  animation: none;
 }
 
-@keyframes bg-drift {
-  0% {
-    background-position: 50% -220px, 12% 80px, 0 0;
-  }
-  100% {
-    background-position: 54% -180px, 16% 120px, 0 0;
-  }
-}
-
+/* === Static background art layer (dragon image) === */
 body::before {
   content: "";
   position: fixed;
@@ -74,12 +71,13 @@ body::before {
   );
 }
 
+/* === Vignette + subtle texture overlay === */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -5;
+  z-index: -4; /* keep above embers video (-5), below fire wash (-3) */
 
   background:
     radial-gradient(
@@ -105,12 +103,32 @@ body::after {
       transparent 2px
     );
 
-  opacity: 0.25;          /* was 0.72 */
-  animation: none;         /* stop the drift */
+  opacity: 0.25;
+  animation: none;
+}
+
+/* === Embers WebM overlay (added) === */
+#embers-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  pointer-events: none;
+  z-index: -5; /* above bg (-6), below vignette (-4) + wash (-3) */
+
+  opacity: 0.55;
+  mix-blend-mode: screen;
+
+  filter: blur(0.3px) saturate(1.1);
+
+  /* avoids occasional subpixel jitter on some GPUs */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* ===== Frame layering ===== */
-
 .ornament-frame {
   position: relative;
   overflow: hidden;
@@ -123,7 +141,6 @@ body::after {
 }
 
 /* ===== War-themed edge lighting ===== */
-
 .ornament-frame::before,
 .ornament-frame::after {
   content: "";
@@ -157,18 +174,14 @@ body::after {
 }
 
 /* ===== Root weave (surface-attached + more thorns) ===== */
-
 .root-wrap {
   position: absolute;
   top: 10px;
   bottom: 10px;
 
-  /* Goal #2: slightly wider lane + more overlap into the surface */
   width: 160px;
 
   pointer-events: none;
-
-  /* ABOVE the surface so it looks attached to the border */
   z-index: 40;
 
   opacity: 0.98;
@@ -181,22 +194,12 @@ body::after {
     transparent 100%
   );
 
-  /* “hug” effect */
   filter: drop-shadow(0 18px 26px rgba(0,0,0,0.55));
 }
 
-.root-wrap-left {
-  /* Goal #2: intrude ~12px further INTO the surface */
-  left: -34px;
-}
+.root-wrap-left { left: -34px; }
+.root-wrap-right { right: -34px; transform: scaleX(-1); }
 
-.root-wrap-right {
-  /* Goal #2: intrude ~12px further INTO the surface */
-  right: -34px;
-  transform: scaleX(-1);
-}
-
-/* BACK LAYER (behind surface) */
 .root-wrap::before {
   content: "";
   position: absolute;
@@ -228,7 +231,6 @@ body::after {
 </svg>");
 }
 
-/* FRONT LAYER (over/under weave on the surface) */
 .root-wrap::after {
   content: "";
   position: absolute;
@@ -247,18 +249,14 @@ body::after {
 
   animation: root-breathe 14s ease-in-out infinite alternate;
 
-  /* Goal #2: irregular weave cadence (still repeating, but less uniform) */
   mask-image: repeating-linear-gradient(
     to bottom,
     rgba(0,0,0,1) 0px,
     rgba(0,0,0,1) 46px,
-
     rgba(0,0,0,0) 46px,
     rgba(0,0,0,0) 72px,
-
     rgba(0,0,0,1) 72px,
     rgba(0,0,0,1) 118px,
-
     rgba(0,0,0,0) 118px,
     rgba(0,0,0,0) 148px
   );
@@ -314,13 +312,8 @@ body::after {
 </svg>");
 }
 
-/* Extra “attached” feeling: a rim shadow hugging the frame edge */
-.root-wrap-left {
-  box-shadow: inset -14px 0 22px rgba(0,0,0,0.22);
-}
-.root-wrap-right {
-  box-shadow: inset 14px 0 22px rgba(0,0,0,0.22);
-}
+.root-wrap-left { box-shadow: inset -14px 0 22px rgba(0,0,0,0.22); }
+.root-wrap-right { box-shadow: inset 14px 0 22px rgba(0,0,0,0.22); }
 
 @keyframes root-breathe {
   0% {
@@ -334,7 +327,6 @@ body::after {
 }
 
 /* ===== Banner title (readable + kicker contrast) ===== */
-
 .row-banner {
   position: relative;
   display: flex;
@@ -361,8 +353,6 @@ body::after {
     url("/row-sigil.png");
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: center, center, 50% 42%;
-
-  /* Goal #3: wider/more present sigil behind the header */
   background-size: 100% 100%, 100% 100%, 560px auto;
 
   opacity: 0.62;
@@ -451,15 +441,10 @@ body::after {
   transform: translateY(10px);
   animation: fadeUp 320ms ease-out forwards;
 }
-.anim-delay-1 {
-  animation-delay: 70ms;
-}
-.anim-delay-2 {
-  animation-delay: 140ms;
-}
-.anim-delay-3 {
-  animation-delay: 210ms;
-}
+.anim-delay-1 { animation-delay: 70ms; }
+.anim-delay-2 { animation-delay: 140ms; }
+.anim-delay-3 { animation-delay: 210ms; }
+
 @keyframes fadeUp {
   to {
     opacity: 1;
@@ -489,6 +474,10 @@ body::after {
     animation: none;
   }
 
+  #embers-video {
+    display: none;
+  }
+
   .anim-fade-up {
     opacity: 1;
     transform: none;
@@ -502,22 +491,3 @@ body::after {
     transition: none;
   }
 }
-/* Animated site background */
-body {
-  background-image: url("/bg.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-/* Optional: dark overlay so text stays readable */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  pointer-events: none;
-  z-index: -1;
-}
-
