@@ -61,6 +61,7 @@ body::before {
   background-image: url("/og-plain.png");
   background-repeat: no-repeat;
   background-position: center;
+  filter: brightness(1.12) contrast(1.06);
 
   /* Goal #3: wider / more present */
   background-size: cover;
@@ -89,8 +90,8 @@ body::after {
     radial-gradient(
       70% 100% at 50% 50%,
       transparent 0%,
-      rgba(0, 0, 0, 0.18) 55%,
-      rgba(0, 0, 0, 0.42) 100%
+      rgba(0, 0, 0, 0.10) 55%,
+      rgba(0, 0, 0, 0.22) 100%
     ),
     linear-gradient(
       to right,
