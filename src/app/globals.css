@@ -58,7 +58,7 @@ body::before {
   /* CHANGED: push behind canvas */
   z-index: -6;
 
-  background-image: url("/row-sigil.png");
+  background-image: url("/og-plain.png");
   background-repeat: no-repeat;
   background-position: center;
 
