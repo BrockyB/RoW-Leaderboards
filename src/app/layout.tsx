@@ -40,18 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-zinc-950 text-zinc-100 antialiased">
-        {/* Embers overlay video (transparent WebM) */}
-        <video
-          id="embers-video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        >
-          <source src="/embers.webm" type="video/webm" />
-        </video>
+        {/* Embers overlay (CSS-only, no video) */}
 
         {/* Background stack (NO SMOKE, NO CANVAS) */}
         <div
@@ -62,6 +51,8 @@ export default function RootLayout({
           {/* Fire wash only */}
           <div className="row-fire-wash absolute inset-0" />
         </div>
+
+	<div className="row-embers" aria-hidden="true" />
 
         {children}
 

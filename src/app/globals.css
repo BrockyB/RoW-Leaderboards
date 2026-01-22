@@ -110,27 +110,6 @@ body::after {
   animation: none;
 }
 
-/* === Embers WebM overlay (added) === */
-#embers-video {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  pointer-events: none;
-  z-index: -5; /* above bg (-6), below vignette (-4) + wash (-3) */
-
-  opacity: 0.55;
-  mix-blend-mode: screen;
-
-  filter: blur(0.3px) saturate(1.1);
-
-  /* avoids occasional subpixel jitter on some GPUs */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
 /* ===== Frame layering ===== */
 .ornament-frame {
   position: relative;
@@ -475,10 +454,6 @@ body::after {
   .root-wrap::before,
   .root-wrap::after {
     animation: none;
-  }
-
-  #embers-video {
-    display: none;
   }
 
   .anim-fade-up {
