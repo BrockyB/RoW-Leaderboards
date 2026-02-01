@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-01T18:50:46.431874Z",
+  "updatedAt": "2026-02-01T19:08:13.319800Z",
   "boards": {
     "overall": {
       "title": "Overall",
@@ -9,7 +9,7 @@
           "occ": 37294,
           "gather": 0,
           "pvp": 175398,
-          "life": 60
+          "life": 0
         },
         {
           "name": "sᴀʟᴍᴏɴ 海洋",
@@ -24,6 +24,20 @@
           "gather": 0,
           "pvp": 152340,
           "life": 0
+        },
+        {
+          "name": "ｗｈｉｓｐｅｒ",
+          "occ": 43789,
+          "gather": 51,
+          "pvp": 109610,
+          "life": 0
+        },
+        {
+          "name": "Tiênngocvip",
+          "occ": 54670,
+          "gather": 18,
+          "pvp": 92247,
+          "life": 750
         },
         {
           "name": "ᴿᵃᶜᶦⁿᵍᵇᵒᶦ ShyneS",
@@ -61,13 +75,6 @@
           "life": 0
         },
         {
-          "name": "ｗｈｉｓｐｅｒ",
-          "occ": 26289,
-          "gather": 51,
-          "pvp": 78011,
-          "life": 0
-        },
-        {
           "name": "嗡 Kᴇᴘᴀᴢᴇᴜꜱ 乡",
           "occ": 16203,
           "gather": 0,
@@ -79,6 +86,13 @@
           "occ": 33084,
           "gather": 0,
           "pvp": 68430,
+          "life": 0
+        },
+        {
+          "name": "Rin々",
+          "occ": 31335,
+          "gather": 0,
+          "pvp": 68808,
           "life": 0
         },
         {
@@ -103,11 +117,18 @@
           "life": 0
         },
         {
+          "name": "CAFE PHỐ",
+          "occ": 43103,
+          "gather": 0,
+          "pvp": 51921,
+          "life": 0
+        },
+        {
           "name": "Taro Sakamoto",
           "occ": 53601,
           "gather": 0,
           "pvp": 41240,
-          "life": 60
+          "life": 0
         },
         {
           "name": "xChivaSx",
@@ -124,11 +145,11 @@
           "life": 0
         },
         {
-          "name": "® Hudn vs DAM cHIM",
+          "name": "Huấn Vs ĐẮM CHÌM",
           "occ": 26514,
           "gather": 0,
           "pvp": 62282,
-          "life": 60
+          "life": 0
         },
         {
           "name": "嘻嘻不嘻嘻",
@@ -138,11 +159,32 @@
           "life": 0
         },
         {
-          "name": "acnabo ShynS",
+          "name": "DIINGDOONG",
+          "occ": 54579,
+          "gather": 0,
+          "pvp": 32960,
+          "life": 300
+        },
+        {
+          "name": "乂 Wukong 乂",
+          "occ": 54614,
+          "gather": 201,
+          "pvp": 32657,
+          "life": 0
+        },
+        {
+          "name": "Duckyᵔᴥᵔ",
+          "occ": 38797,
+          "gather": 105,
+          "pvp": 47075,
+          "life": 0
+        },
+        {
+          "name": "ᴿᵃᶜᶦⁿᵍᵇᵒᶦ ShynS",
           "occ": 19311,
           "gather": 3,
           "pvp": 66513,
-          "life": 60
+          "life": 0
         },
         {
           "name": "Immit",
@@ -156,6 +198,13 @@
           "occ": 23944,
           "gather": 0,
           "pvp": 58431,
+          "life": 0
+        },
+        {
+          "name": "KhaHayDõi",
+          "occ": 54689,
+          "gather": 0,
+          "pvp": 27221,
           "life": 0
         },
         {
@@ -184,6 +233,13 @@
           "occ": 16203,
           "gather": 0,
           "pvp": 63233,
+          "life": 0
+        },
+        {
+          "name": "Cậu Ba Đăng",
+          "occ": 54689,
+          "gather": 0,
+          "pvp": 23870,
           "life": 0
         },
         {
@@ -222,17 +278,10 @@
           "life": 0
         },
         {
-          "name": "Tiênngocvip",
-          "occ": 26372,
+          "name": "Tiểu Cường ᵔᴥᵔ",
+          "occ": 53062,
           "gather": 0,
-          "pvp": 47872,
-          "life": 750
-        },
-        {
-          "name": "Tiénngocvip",
-          "occ": 28298,
-          "gather": 18,
-          "pvp": 44375,
+          "pvp": 20762,
           "life": 0
         },
         {
@@ -278,6 +327,27 @@
           "life": 0
         },
         {
+          "name": "ᵂᵃᴿメ Zinn ャᵛᶰ",
+          "occ": 40223,
+          "gather": 0,
+          "pvp": 25699,
+          "life": 0
+        },
+        {
+          "name": "ᵛᶰ ViêmĐế",
+          "occ": 54547,
+          "gather": 0,
+          "pvp": 11346,
+          "life": 0
+        },
+        {
+          "name": "乂ᵖˡᵃᶜᴄᴏɴᴀɴ乂",
+          "occ": 47852,
+          "gather": 0,
+          "pvp": 16533,
+          "life": 0
+        },
+        {
           "name": "CookYALL",
           "occ": 33084,
           "gather": 0,
@@ -320,13 +390,6 @@
           "life": 0
         },
         {
-          "name": "CAFE PHỐ",
-          "occ": 26289,
-          "gather": 0,
-          "pvp": 32999,
-          "life": 0
-        },
-        {
           "name": "J么ᴄᴋ Sᴘᴀʀʀow",
           "occ": 16278,
           "gather": 0,
@@ -338,13 +401,6 @@
           "occ": 33199,
           "gather": 0,
           "pvp": 25356,
-          "life": 0
-        },
-        {
-          "name": "Rin々",
-          "occ": 17180,
-          "gather": 0,
-          "pvp": 40768,
           "life": 0
         },
         {
@@ -397,6 +453,13 @@
           "life": 0
         },
         {
+          "name": "ᴵᴹᵂ 게",
+          "occ": 25132,
+          "gather": 0,
+          "pvp": 27968,
+          "life": 300
+        },
+        {
           "name": "义ZeroUprising义",
           "occ": 30508,
           "gather": 0,
@@ -432,13 +495,6 @@
           "life": 0
         },
         {
-          "name": "whisper",
-          "occ": 17500,
-          "gather": 0,
-          "pvp": 31599,
-          "life": 60
-        },
-        {
           "name": "ᵛᶰシ Zinniee ᵛᶰシ",
           "occ": 16203,
           "gather": 75,
@@ -460,20 +516,6 @@
           "life": 0
         },
         {
-          "name": "Duckyᵔᴥᵔ",
-          "occ": 26289,
-          "gather": 0,
-          "pvp": 20677,
-          "life": 0
-        },
-        {
-          "name": "乂 Wukong 乂",
-          "occ": 26289,
-          "gather": 0,
-          "pvp": 20481,
-          "life": 0
-        },
-        {
           "name": "xDABI",
           "occ": 33084,
           "gather": 0,
@@ -481,25 +523,11 @@
           "life": 0
         },
         {
-          "name": "DIINGDOONG",
-          "occ": 26289,
-          "gather": 0,
-          "pvp": 19425,
-          "life": 300
-        },
-        {
           "name": "ᶠᵏ ᵁ xBrockyBx",
           "occ": 16243,
           "gather": 0,
           "pvp": 29390,
           "life": 350
-        },
-        {
-          "name": "KhaHayDõi",
-          "occ": 26364,
-          "gather": 0,
-          "pvp": 18213,
-          "life": 0
         },
         {
           "name": "vBT19 K9",
@@ -537,13 +565,6 @@
           "life": 0
         },
         {
-          "name": "Rin&",
-          "occ": 14155,
-          "gather": 0,
-          "pvp": 28040,
-          "life": 60
-        },
-        {
           "name": "MANDALORIANᵀᴴ",
           "occ": 28789,
           "gather": 0,
@@ -555,13 +576,6 @@
           "occ": 16203,
           "gather": 0,
           "pvp": 25929,
-          "life": 0
-        },
-        {
-          "name": "Cậu Ba Đăng",
-          "occ": 26289,
-          "gather": 0,
-          "pvp": 15542,
           "life": 0
         },
         {
@@ -579,13 +593,6 @@
           "life": 0
         },
         {
-          "name": "\\{Wukong &",
-          "occ": 28325,
-          "gather": 201,
-          "pvp": 12176,
-          "life": 0
-        },
-        {
           "name": "暁 InVanKutonhuFIx",
           "occ": 26439,
           "gather": 0,
@@ -597,20 +604,6 @@
           "occ": 16203,
           "gather": 0,
           "pvp": 22994,
-          "life": 0
-        },
-        {
-          "name": "Tiểu Cường ᵔᴥᵔ",
-          "occ": 26289,
-          "gather": 0,
-          "pvp": 12767,
-          "life": 0
-        },
-        {
-          "name": "Ducky\"",
-          "occ": 12508,
-          "gather": 105,
-          "pvp": 26398,
           "life": 0
         },
         {
@@ -635,24 +628,10 @@
           "life": 0
         },
         {
-          "name": "KhaHayD6i",
-          "occ": 28325,
-          "gather": 0,
-          "pvp": 9008,
-          "life": 0
-        },
-        {
           "name": "ᵀᴼﾒzoreqqee",
           "occ": 16211,
           "gather": 0,
           "pvp": 20529,
-          "life": 0
-        },
-        {
-          "name": "Cau Ba Dang",
-          "occ": 28400,
-          "gather": 0,
-          "pvp": 8328,
           "life": 0
         },
         {
@@ -663,32 +642,11 @@
           "life": 0
         },
         {
-          "name": "乂ᵖˡᵃᶜᴄᴏɴᴀɴ乂",
-          "occ": 26372,
-          "gather": 0,
-          "pvp": 10030,
-          "life": 0
-        },
-        {
-          "name": "&nosGrimmPH",
+          "name": "ᵏᶦⁿᵍˢGrimmᴾᴴ",
           "occ": 22037,
           "gather": 3,
           "pvp": 13512,
           "life": 750
-        },
-        {
-          "name": "WeRX Zinn vy",
-          "occ": 27366,
-          "gather": 0,
-          "pvp": 8448,
-          "life": 20
-        },
-        {
-          "name": "CAFE PHO",
-          "occ": 16814,
-          "gather": 0,
-          "pvp": 18922,
-          "life": 0
         },
         {
           "name": "cₒffₑₑ 半島咖啡",
@@ -696,13 +654,6 @@
           "gather": 0,
           "pvp": 20373,
           "life": 0
-        },
-        {
-          "name": "Tiéu Cuéng-2~",
-          "occ": 26773,
-          "gather": 0,
-          "pvp": 7995,
-          "life": 20
         },
         {
           "name": "Shinreinedesneige",
@@ -719,31 +670,10 @@
           "life": 0
         },
         {
-          "name": "“viémbé",
-          "occ": 28250,
-          "gather": 0,
-          "pvp": 5796,
-          "life": 60
-        },
-        {
           "name": "嗡 Vᴀɴᴅᴇᴀᴠɪ 乡",
           "occ": 3592,
           "gather": 0,
           "pvp": 29000,
-          "life": 0
-        },
-        {
-          "name": "ᵛᶰ ViêmĐế",
-          "occ": 26297,
-          "gather": 0,
-          "pvp": 5550,
-          "life": 0
-        },
-        {
-          "name": "ᵂᵃᴿメ Zinn ャᵛᶰ",
-          "occ": 12857,
-          "gather": 0,
-          "pvp": 17251,
           "life": 0
         },
         {
@@ -754,13 +684,6 @@
           "life": 0
         },
         {
-          "name": "Splacconand<",
-          "occ": 21480,
-          "gather": 0,
-          "pvp": 6503,
-          "life": 60
-        },
-        {
           "name": "ˢᶻᵐFatih",
           "occ": 23059,
           "gather": 890,
@@ -768,7 +691,7 @@
           "life": 0
         },
         {
-          "name": "~“Dothingg",
+          "name": "ᵛᶰDothingg",
           "occ": 11663,
           "gather": 198,
           "pvp": 14385,
@@ -779,6 +702,13 @@
           "occ": 12842,
           "gather": 6,
           "pvp": 12937,
+          "life": 0
+        },
+        {
+          "name": "ᵖˡᵃᶜJin",
+          "occ": 17877,
+          "gather": 0,
+          "pvp": 402,
           "life": 0
         },
         {
@@ -805,52 +735,66 @@
           "occ": 21091,
           "gather": 0,
           "pvp": 79054,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "® Hudn vs DAM cHIM",
+          "name": "Huấn Vs ĐẮM CHÌM",
           "occ": 26514,
           "gather": 0,
           "pvp": 62282,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "acnabo ShynS",
+          "name": "ᴿᵃᶜᶦⁿᵍᵇᵒᶦ ShynS",
           "occ": 19311,
           "gather": 3,
           "pvp": 66513,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "Tiénngocvip",
+          "name": "Tiênngocvip",
           "occ": 28298,
           "gather": 18,
           "pvp": 44375,
           "life": 0
         },
         {
-          "name": "whisper",
+          "name": "ᴵᴹᵂ 게",
+          "occ": 25132,
+          "gather": 0,
+          "pvp": 27968,
+          "life": 300
+        },
+        {
+          "name": "ｗｈｉｓｐｅｒ",
           "occ": 17500,
           "gather": 0,
           "pvp": 31599,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "Rin&",
+          "name": "Rin々",
           "occ": 14155,
           "gather": 0,
           "pvp": 28040,
-          "life": 60
+          "life": 0
+        },
+        {
+          "name": "DIINGDOONG",
+          "occ": 28290,
+          "gather": 0,
+          "pvp": 13535,
+          "life": 0
         },
         {
           "name": "Taro Sakamoto",
           "occ": 27738,
           "gather": 0,
           "pvp": 13729,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "\\{Wukong &",
+          "name": "乂 Wukong 乂",
           "occ": 28325,
           "gather": 201,
           "pvp": 12176,
@@ -864,7 +808,7 @@
           "life": 0
         },
         {
-          "name": "Ducky\"",
+          "name": "Duckyᵔᴥᵔ",
           "occ": 12508,
           "gather": 105,
           "pvp": 26398,
@@ -878,21 +822,21 @@
           "life": 0
         },
         {
-          "name": "KhaHayD6i",
+          "name": "KhaHayDõi",
           "occ": 28325,
           "gather": 0,
           "pvp": 9008,
           "life": 0
         },
         {
-          "name": "Cau Ba Dang",
+          "name": "Cậu Ba Đăng",
           "occ": 28400,
           "gather": 0,
           "pvp": 8328,
           "life": 0
         },
         {
-          "name": "&nosGrimmPH",
+          "name": "ᵏᶦⁿᵍˢGrimmᴾᴴ",
           "occ": 22037,
           "gather": 3,
           "pvp": 13512,
@@ -906,45 +850,52 @@
           "life": 0
         },
         {
-          "name": "WeRX Zinn vy",
+          "name": "ᵂᵃᴿメ Zinn ャᵛᶰ",
           "occ": 27366,
           "gather": 0,
           "pvp": 8448,
-          "life": 20
+          "life": 0
         },
         {
-          "name": "CAFE PHO",
+          "name": "CAFE PHỐ",
           "occ": 16814,
           "gather": 0,
           "pvp": 18922,
           "life": 0
         },
         {
-          "name": "Tiéu Cuéng-2~",
+          "name": "Tiểu Cường ᵔᴥᵔ",
           "occ": 26773,
           "gather": 0,
           "pvp": 7995,
-          "life": 20
+          "life": 0
         },
         {
-          "name": "“viémbé",
+          "name": "ᵛᶰ ViêmĐế",
           "occ": 28250,
           "gather": 0,
           "pvp": 5796,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "Splacconand<",
+          "name": "乂ᵖˡᵃᶜᴄᴏɴᴀɴ乂",
           "occ": 21480,
           "gather": 0,
           "pvp": 6503,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "~“Dothingg",
+          "name": "ᵛᶰDothingg",
           "occ": 11663,
           "gather": 198,
           "pvp": 14385,
+          "life": 0
+        },
+        {
+          "name": "ᵖˡᵃᶜJin",
+          "occ": 17877,
+          "gather": 0,
+          "pvp": 402,
           "life": 0
         }
       ]
@@ -1635,52 +1586,66 @@
           "occ": 21091,
           "gather": 0,
           "pvp": 79054,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "® Hudn vs DAM cHIM",
+          "name": "Huấn Vs ĐẮM CHÌM",
           "occ": 26514,
           "gather": 0,
           "pvp": 62282,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "acnabo ShynS",
+          "name": "ᴿᵃᶜᶦⁿᵍᵇᵒᶦ ShynS",
           "occ": 19311,
           "gather": 3,
           "pvp": 66513,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "Tiénngocvip",
+          "name": "Tiênngocvip",
           "occ": 28298,
           "gather": 18,
           "pvp": 44375,
           "life": 0
         },
         {
-          "name": "whisper",
+          "name": "ᴵᴹᵂ 게",
+          "occ": 25132,
+          "gather": 0,
+          "pvp": 27968,
+          "life": 300
+        },
+        {
+          "name": "ｗｈｉｓｐｅｒ",
           "occ": 17500,
           "gather": 0,
           "pvp": 31599,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "Rin&",
+          "name": "Rin々",
           "occ": 14155,
           "gather": 0,
           "pvp": 28040,
-          "life": 60
+          "life": 0
+        },
+        {
+          "name": "DIINGDOONG",
+          "occ": 28290,
+          "gather": 0,
+          "pvp": 13535,
+          "life": 0
         },
         {
           "name": "Taro Sakamoto",
           "occ": 27738,
           "gather": 0,
           "pvp": 13729,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "\\{Wukong &",
+          "name": "乂 Wukong 乂",
           "occ": 28325,
           "gather": 201,
           "pvp": 12176,
@@ -1694,7 +1659,7 @@
           "life": 0
         },
         {
-          "name": "Ducky\"",
+          "name": "Duckyᵔᴥᵔ",
           "occ": 12508,
           "gather": 105,
           "pvp": 26398,
@@ -1708,21 +1673,21 @@
           "life": 0
         },
         {
-          "name": "KhaHayD6i",
+          "name": "KhaHayDõi",
           "occ": 28325,
           "gather": 0,
           "pvp": 9008,
           "life": 0
         },
         {
-          "name": "Cau Ba Dang",
+          "name": "Cậu Ba Đăng",
           "occ": 28400,
           "gather": 0,
           "pvp": 8328,
           "life": 0
         },
         {
-          "name": "&nosGrimmPH",
+          "name": "ᵏᶦⁿᵍˢGrimmᴾᴴ",
           "occ": 22037,
           "gather": 3,
           "pvp": 13512,
@@ -1736,45 +1701,52 @@
           "life": 0
         },
         {
-          "name": "WeRX Zinn vy",
+          "name": "ᵂᵃᴿメ Zinn ャᵛᶰ",
           "occ": 27366,
           "gather": 0,
           "pvp": 8448,
-          "life": 20
+          "life": 0
         },
         {
-          "name": "CAFE PHO",
+          "name": "CAFE PHỐ",
           "occ": 16814,
           "gather": 0,
           "pvp": 18922,
           "life": 0
         },
         {
-          "name": "Tiéu Cuéng-2~",
+          "name": "Tiểu Cường ᵔᴥᵔ",
           "occ": 26773,
           "gather": 0,
           "pvp": 7995,
-          "life": 20
+          "life": 0
         },
         {
-          "name": "“viémbé",
+          "name": "ᵛᶰ ViêmĐế",
           "occ": 28250,
           "gather": 0,
           "pvp": 5796,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "Splacconand<",
+          "name": "乂ᵖˡᵃᶜᴄᴏɴᴀɴ乂",
           "occ": 21480,
           "gather": 0,
           "pvp": 6503,
-          "life": 60
+          "life": 0
         },
         {
-          "name": "~“Dothingg",
+          "name": "ᵛᶰDothingg",
           "occ": 11663,
           "gather": 198,
           "pvp": 14385,
+          "life": 0
+        },
+        {
+          "name": "ᵖˡᵃᶜJin",
+          "occ": 17877,
+          "gather": 0,
+          "pvp": 402,
           "life": 0
         }
       ],
