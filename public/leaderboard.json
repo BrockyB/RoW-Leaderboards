@@ -1,9 +1,23 @@
 {
-  "updatedAt": "2026-02-02T01:44:37.866298Z",
+  "updatedAt": "2026-02-02T01:53:43.760857Z",
   "boards": {
     "overall": {
       "title": "Overall",
       "entries": [
+        {
+          "name": "Lolo彡老虎",
+          "occ": 44440,
+          "gather": 0,
+          "pvp": 308896,
+          "life": 0
+        },
+        {
+          "name": "Kɪʏᴏᴍɪ",
+          "occ": 47629,
+          "gather": 0,
+          "pvp": 272155,
+          "life": 0
+        },
         {
           "name": "TasteTheeRambo",
           "occ": 58385,
@@ -12,10 +26,10 @@
           "life": 60
         },
         {
-          "name": "Kryomi",
-          "occ": 31426,
+          "name": "嗡 Kᴇᴘᴀᴢᴇᴜꜱ 乡",
+          "occ": 47704,
           "gather": 0,
-          "pvp": 177603,
+          "pvp": 185391,
           "life": 0
         },
         {
@@ -26,10 +40,10 @@
           "life": 0
         },
         {
-          "name": "LoloZ#R",
-          "occ": 28237,
+          "name": "Jabami 夢子",
+          "occ": 47704,
           "gather": 0,
-          "pvp": 156556,
+          "pvp": 137026,
           "life": 0
         },
         {
@@ -40,10 +54,10 @@
           "life": 0
         },
         {
-          "name": "Lolo彡老虎",
-          "occ": 16203,
+          "name": "Batch㋡II",
+          "occ": 47704,
           "gather": 0,
-          "pvp": 152340,
+          "pvp": 116352,
           "life": 0
         },
         {
@@ -58,6 +72,20 @@
           "occ": 43789,
           "gather": 51,
           "pvp": 109610,
+          "life": 0
+        },
+        {
+          "name": "嗡 Vᴀɴᴅᴇᴀᴠɪ 乡",
+          "occ": 35168,
+          "gather": 0,
+          "pvp": 116705,
+          "life": 0
+        },
+        {
+          "name": "ᴘʀɪᴅᴇGrizzlyBear",
+          "occ": 47629,
+          "gather": 2375,
+          "pvp": 100569,
           "life": 0
         },
         {
@@ -110,17 +138,17 @@
           "life": 0
         },
         {
-          "name": "I§§ Kepazeus 9",
-          "occ": 31501,
-          "gather": 0,
-          "pvp": 98053,
-          "life": 0
-        },
-        {
           "name": "Rᴀʙʙɪᴛᴜᴢᴀ畏",
           "occ": 33084,
           "gather": 0,
           "pvp": 92317,
+          "life": 0
+        },
+        {
+          "name": "嗡 Mᴇʜᴀᴢ 乡",
+          "occ": 44066,
+          "gather": 0,
+          "pvp": 77893,
           "life": 0
         },
         {
@@ -131,13 +159,6 @@
           "life": 1800
         },
         {
-          "name": "1% VanpEavi &",
-          "occ": 31576,
-          "gather": 0,
-          "pvp": 87705,
-          "life": 0
-        },
-        {
           "name": "ャマᴇcʟɪpseマャ",
           "occ": 16203,
           "gather": 0,
@@ -145,31 +166,17 @@
           "life": 0
         },
         {
-          "name": "Kɪʏᴏᴍɪ",
-          "occ": 16203,
+          "name": "J么ᴄᴋ Sᴘᴀʀʀow",
+          "occ": 47854,
           "gather": 0,
-          "pvp": 94552,
-          "life": 0
+          "pvp": 60574,
+          "life": 300
         },
         {
-          "name": "Jabami BF",
-          "occ": 31501,
-          "gather": 0,
-          "pvp": 77701,
-          "life": 0
-        },
-        {
-          "name": "[§ GasPeRS",
+          "name": "嗡 Gᴀꜱᴘᴇʀ 乡",
           "occ": 31426,
           "gather": 0,
           "pvp": 75548,
-          "life": 0
-        },
-        {
-          "name": "嗡 Kᴇᴘᴀᴢᴇᴜꜱ 乡",
-          "occ": 16203,
-          "gather": 0,
-          "pvp": 87338,
           "life": 0
         },
         {
@@ -192,6 +199,13 @@
           "gather": 0,
           "pvp": 68808,
           "life": 0
+        },
+        {
+          "name": "ᶠᵏ ᵁ xBrockyBx",
+          "occ": 47669,
+          "gather": 150,
+          "pvp": 51478,
+          "life": 350
         },
         {
           "name": "Mischievous Kusa",
@@ -285,13 +299,6 @@
           "life": 0
         },
         {
-          "name": "Batch@ll",
-          "occ": 31501,
-          "gather": 0,
-          "pvp": 53119,
-          "life": 0
-        },
-        {
           "name": "Immit",
           "occ": 50013,
           "gather": 0,
@@ -313,13 +320,6 @@
           "life": 0
         },
         {
-          "name": "pripeGrizzlyBear",
-          "occ": 31426,
-          "gather": 2218,
-          "pvp": 48109,
-          "life": 0
-        },
-        {
           "name": "Alexsander Khan",
           "occ": 26289,
           "gather": 0,
@@ -338,20 +338,6 @@
           "occ": 33124,
           "gather": 0,
           "pvp": 47000,
-          "life": 0
-        },
-        {
-          "name": "Batch㋡II",
-          "occ": 16203,
-          "gather": 0,
-          "pvp": 63233,
-          "life": 0
-        },
-        {
-          "name": "[%§ Menaz S",
-          "occ": 31426,
-          "gather": 0,
-          "pvp": 47709,
           "life": 0
         },
         {
@@ -390,10 +376,10 @@
           "life": 0
         },
         {
-          "name": "Jabami 夢子",
-          "occ": 16203,
+          "name": "ᵀᴼﾒzoreqqee",
+          "occ": 46383,
           "gather": 0,
-          "pvp": 59325,
+          "pvp": 28295,
           "life": 0
         },
         {
@@ -436,13 +422,6 @@
           "occ": 33124,
           "gather": 270,
           "pvp": 36141,
-          "life": 0
-        },
-        {
-          "name": "ᴘʀɪᴅᴇGrizzlyBear",
-          "occ": 16203,
-          "gather": 157,
-          "pvp": 52460,
           "life": 0
         },
         {
@@ -493,13 +472,6 @@
           "gather": 0,
           "pvp": 27479,
           "life": 0
-        },
-        {
-          "name": "J么ᴄᴋ Sᴘᴀʀʀow",
-          "occ": 16278,
-          "gather": 0,
-          "pvp": 42565,
-          "life": 300
         },
         {
           "name": "ŘežörX6",
@@ -558,13 +530,6 @@
           "life": 0
         },
         {
-          "name": "*UxBrockyBx",
-          "occ": 31426,
-          "gather": 150,
-          "pvp": 22088,
-          "life": 0
-        },
-        {
           "name": "ᴵᴹᵂ 게",
           "occ": 25132,
           "gather": 0,
@@ -607,17 +572,10 @@
           "life": 0
         },
         {
-          "name": "farmer BunIRR @)",
+          "name": "ᶠᵃʳᵐᵉʳ ↇᴜɴɪʀʀ ㋰",
           "occ": 30895,
           "gather": 486,
           "pvp": 19769,
-          "life": 0
-        },
-        {
-          "name": "JAck SPARROW",
-          "occ": 31576,
-          "gather": 0,
-          "pvp": 18009,
           "life": 0
         },
         {
@@ -656,13 +614,6 @@
           "life": 0
         },
         {
-          "name": "ᶠᵏ ᵁ xBrockyBx",
-          "occ": 16243,
-          "gather": 0,
-          "pvp": 29390,
-          "life": 350
-        },
-        {
           "name": "vBT19 K9",
           "occ": 24746,
           "gather": 0,
@@ -674,13 +625,6 @@
           "occ": 33159,
           "gather": 0,
           "pvp": 9768,
-          "life": 0
-        },
-        {
-          "name": "嗡 Mᴇʜᴀᴢ 乡",
-          "occ": 12640,
-          "gather": 0,
-          "pvp": 30184,
           "life": 0
         },
         {
@@ -761,13 +705,6 @@
           "life": 0
         },
         {
-          "name": "7°Xzoreqqee",
-          "occ": 30172,
-          "gather": 0,
-          "pvp": 7766,
-          "life": 0
-        },
-        {
           "name": "Ardgenta",
           "occ": 16203,
           "gather": 9,
@@ -779,13 +716,6 @@
           "occ": 28325,
           "gather": 0,
           "pvp": 9008,
-          "life": 0
-        },
-        {
-          "name": "ᵀᴼﾒzoreqqee",
-          "occ": 16211,
-          "gather": 0,
-          "pvp": 20529,
           "life": 0
         },
         {
@@ -866,13 +796,6 @@
           "life": 60
         },
         {
-          "name": "嗡 Vᴀɴᴅᴇᴀᴠɪ 乡",
-          "occ": 3592,
-          "gather": 0,
-          "pvp": 29000,
-          "life": 0
-        },
-        {
           "name": "Kitlerrrrr",
           "occ": 20317,
           "gather": 0,
@@ -936,7 +859,7 @@
           "life": 0
         },
         {
-          "name": "wmartiane",
+          "name": "เทพเจ้าโคตวย",
           "occ": 6766,
           "gather": 0,
           "pvp": 2348,
@@ -948,42 +871,42 @@
       "title": "This Week",
       "entries": [
         {
-          "name": "Kryomi",
+          "name": "Kɪʏᴏᴍɪ",
           "occ": 31426,
           "gather": 0,
           "pvp": 177603,
           "life": 0
         },
         {
-          "name": "LoloZ#R",
+          "name": "Lolo彡老虎",
           "occ": 28237,
           "gather": 0,
           "pvp": 156556,
           "life": 0
         },
         {
-          "name": "I§§ Kepazeus 9",
+          "name": "嗡 Kᴇᴘᴀᴢᴇᴜꜱ 乡",
           "occ": 31501,
           "gather": 0,
           "pvp": 98053,
           "life": 0
         },
         {
-          "name": "1% VanpEavi &",
+          "name": "嗡 Vᴀɴᴅᴇᴀᴠɪ 乡",
           "occ": 31576,
           "gather": 0,
           "pvp": 87705,
           "life": 0
         },
         {
-          "name": "Jabami BF",
+          "name": "Jabami 夢子",
           "occ": 31501,
           "gather": 0,
           "pvp": 77701,
           "life": 0
         },
         {
-          "name": "[§ GasPeRS",
+          "name": "嗡 Gᴀꜱᴘᴇʀ 乡",
           "occ": 31426,
           "gather": 0,
           "pvp": 75548,
@@ -1032,14 +955,14 @@
           "life": 0
         },
         {
-          "name": "Batch@ll",
+          "name": "Batch㋡II",
           "occ": 31501,
           "gather": 0,
           "pvp": 53119,
           "life": 0
         },
         {
-          "name": "pripeGrizzlyBear",
+          "name": "ᴘʀɪᴅᴇGrizzlyBear",
           "occ": 31426,
           "gather": 2218,
           "pvp": 48109,
@@ -1060,7 +983,7 @@
           "life": 350
         },
         {
-          "name": "[%§ Menaz S",
+          "name": "嗡 Mᴇʜᴀᴢ 乡",
           "occ": 31426,
           "gather": 0,
           "pvp": 47709,
@@ -1102,7 +1025,7 @@
           "life": 0
         },
         {
-          "name": "*UxBrockyBx",
+          "name": "ᶠᵏ ᵁ xBrockyBx",
           "occ": 31426,
           "gather": 150,
           "pvp": 22088,
@@ -1123,14 +1046,14 @@
           "life": 0
         },
         {
-          "name": "farmer BunIRR @)",
+          "name": "ᶠᵃʳᵐᵉʳ ↇᴜɴɪʀʀ ㋰",
           "occ": 30895,
           "gather": 486,
           "pvp": 19769,
           "life": 0
         },
         {
-          "name": "JAck SPARROW",
+          "name": "J么ᴄᴋ Sᴘᴀʀʀow",
           "occ": 31576,
           "gather": 0,
           "pvp": 18009,
@@ -1221,7 +1144,7 @@
           "life": 0
         },
         {
-          "name": "7°Xzoreqqee",
+          "name": "ᵀᴼﾒzoreqqee",
           "occ": 30172,
           "gather": 0,
           "pvp": 7766,
@@ -1368,7 +1291,7 @@
           "life": 0
         },
         {
-          "name": "wmartiane",
+          "name": "เทพเจ้าโคตวย",
           "occ": 6766,
           "gather": 0,
           "pvp": 2348,
@@ -2058,42 +1981,42 @@
       "title": "Week of 2026-01-30 → 2026-02-05",
       "entries": [
         {
-          "name": "Kryomi",
+          "name": "Kɪʏᴏᴍɪ",
           "occ": 31426,
           "gather": 0,
           "pvp": 177603,
           "life": 0
         },
         {
-          "name": "LoloZ#R",
+          "name": "Lolo彡老虎",
           "occ": 28237,
           "gather": 0,
           "pvp": 156556,
           "life": 0
         },
         {
-          "name": "I§§ Kepazeus 9",
+          "name": "嗡 Kᴇᴘᴀᴢᴇᴜꜱ 乡",
           "occ": 31501,
           "gather": 0,
           "pvp": 98053,
           "life": 0
         },
         {
-          "name": "1% VanpEavi &",
+          "name": "嗡 Vᴀɴᴅᴇᴀᴠɪ 乡",
           "occ": 31576,
           "gather": 0,
           "pvp": 87705,
           "life": 0
         },
         {
-          "name": "Jabami BF",
+          "name": "Jabami 夢子",
           "occ": 31501,
           "gather": 0,
           "pvp": 77701,
           "life": 0
         },
         {
-          "name": "[§ GasPeRS",
+          "name": "嗡 Gᴀꜱᴘᴇʀ 乡",
           "occ": 31426,
           "gather": 0,
           "pvp": 75548,
@@ -2142,14 +2065,14 @@
           "life": 0
         },
         {
-          "name": "Batch@ll",
+          "name": "Batch㋡II",
           "occ": 31501,
           "gather": 0,
           "pvp": 53119,
           "life": 0
         },
         {
-          "name": "pripeGrizzlyBear",
+          "name": "ᴘʀɪᴅᴇGrizzlyBear",
           "occ": 31426,
           "gather": 2218,
           "pvp": 48109,
@@ -2170,7 +2093,7 @@
           "life": 350
         },
         {
-          "name": "[%§ Menaz S",
+          "name": "嗡 Mᴇʜᴀᴢ 乡",
           "occ": 31426,
           "gather": 0,
           "pvp": 47709,
@@ -2212,7 +2135,7 @@
           "life": 0
         },
         {
-          "name": "*UxBrockyBx",
+          "name": "ᶠᵏ ᵁ xBrockyBx",
           "occ": 31426,
           "gather": 150,
           "pvp": 22088,
@@ -2233,14 +2156,14 @@
           "life": 0
         },
         {
-          "name": "farmer BunIRR @)",
+          "name": "ᶠᵃʳᵐᵉʳ ↇᴜɴɪʀʀ ㋰",
           "occ": 30895,
           "gather": 486,
           "pvp": 19769,
           "life": 0
         },
         {
-          "name": "JAck SPARROW",
+          "name": "J么ᴄᴋ Sᴘᴀʀʀow",
           "occ": 31576,
           "gather": 0,
           "pvp": 18009,
@@ -2331,7 +2254,7 @@
           "life": 0
         },
         {
-          "name": "7°Xzoreqqee",
+          "name": "ᵀᴼﾒzoreqqee",
           "occ": 30172,
           "gather": 0,
           "pvp": 7766,
@@ -2478,7 +2401,7 @@
           "life": 0
         },
         {
-          "name": "wmartiane",
+          "name": "เทพเจ้าโคตวย",
           "occ": 6766,
           "gather": 0,
           "pvp": 2348,
